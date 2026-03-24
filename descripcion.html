@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Descripción Producto</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: #000;
   color: #fff;
 }
@@ -16,46 +15,50 @@ body {
 .container {
   max-width: 900px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 50px 20px;
 }
 
 /* Tabs */
 .tabs {
   display: flex;
-  gap: 30px;
+  gap: 40px;
   border-bottom: 1px solid #222;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  position: relative;
 }
 
 .tab {
   cursor: pointer;
-  padding-bottom: 10px;
-  color: #777;
+  padding-bottom: 12px;
+  color: #666;
   font-weight: 500;
-  position: relative;
   transition: 0.3s;
+  position: relative;
+}
+
+.tab:hover {
+  color: #aaa;
 }
 
 .tab.active {
   color: #fff;
 }
 
-.tab.active::after {
-  content: "";
+/* Línea animada */
+.indicator {
   position: absolute;
-  left: 0;
   bottom: -1px;
-  width: 100%;
   height: 2px;
   background: #fff;
+  transition: all 0.3s ease;
 }
 
 /* Content */
 .tab-content {
   display: none;
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
+  transform: translateY(15px);
+  transition: all 0.5s ease;
 }
 
 .tab-content.active {
@@ -65,29 +68,51 @@ body {
 }
 
 h2 {
-  font-size: 22px;
+  font-size: 24px;
   margin-bottom: 15px;
+  font-weight: 600;
 }
 
 p {
-  line-height: 1.6;
-  color: #ccc;
-  margin-bottom: 15px;
+  line-height: 1.7;
+  color: #bbb;
+  margin-bottom: 18px;
 }
 
 /* Beneficios */
 .benefits {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
-.benefits div {
-  margin-bottom: 10px;
+.benefit {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
   color: #ddd;
 }
 
-.check {
+.icon {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #444;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-size: 12px;
   color: #fff;
-  margin-right: 8px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .tabs {
+    gap: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }
 </style>
 </head>
@@ -96,61 +121,69 @@ p {
 
 <div class="container">
 
-  <div class="tabs">
-    <div class="tab active" onclick="showTab(0)">¿Qué hace?</div>
-    <div class="tab" onclick="showTab(1)">¿Por qué funciona?</div>
+  <div class="tabs" id="tabs">
+    <div class="tab active" onclick="showTab(0)">Resultados que vas a notar</div>
+    <div class="tab" onclick="showTab(1)">Por qué funciona mejor</div>
+    <div class="indicator" id="indicator"></div>
   </div>
 
   <div class="tab-content active">
-    <h2>Mantén tus sneakers como nuevos</h2>
+    <h2>Tenis limpios sin esfuerzo</h2>
     <p>
-      Limpia tus tenis desde casa de forma rápida y efectiva, eliminando suciedad acumulada y manchas difíciles sin dañarlos.
+      Devuélvele la vida a tus sneakers en minutos eliminando suciedad, manchas y desgaste visible sin dañarlos.
     </p>
     <p>
-      Ideal para quienes usan sus pares diario y quieren mantenerlos fresh sin complicarse.
-    </p>
-    <p>
-      Funciona en piel, textil y materiales sintéticos.
+      Perfecto para quienes usan sus pares diario y quieren mantenerlos siempre fresh sin complicarse.
     </p>
 
     <div class="benefits">
-      <div><span class="check">✔</span> Limpieza visible desde el primer uso</div>
-      <div><span class="check">✔</span> Mejora el color y apariencia</div>
-      <div><span class="check">✔</span> Aumenta la vida útil de tus tenis</div>
+      <div class="benefit"><div class="icon">✓</div> Limpieza visible desde el primer uso</div>
+      <div class="benefit"><div class="icon">✓</div> Mejora inmediata en color y apariencia</div>
+      <div class="benefit"><div class="icon">✓</div> Prolonga la vida de tus sneakers</div>
     </div>
   </div>
 
   <div class="tab-content">
-    <h2>Limpieza efectiva sin dañar</h2>
+    <h2>Limpieza profunda sin dañar</h2>
     <p>
-      La fórmula especializada elimina la suciedad sin maltratar los materiales, manteniendo la textura y el color original.
+      La fórmula especializada actúa directamente sobre la suciedad sin maltratar materiales como piel, textil o sintético.
     </p>
     <p>
-      Los cepillos de distintas densidades permiten limpiar cada parte del tenis a profundidad sin rayar ni desgastar.
-    </p>
-    <p>
-      Es el mismo tipo de limpieza que usaría un profesional, pero desde tu casa.
+      Los cepillos permiten trabajar cada zona con precisión, logrando resultados de nivel profesional desde casa.
     </p>
 
     <div class="benefits">
-      <div><span class="check">✔</span> Fórmula segura para múltiples materiales</div>
-      <div><span class="check">✔</span> Limpieza profunda sin desgaste</div>
-      <div><span class="check">✔</span> Resultados tipo profesional</div>
+      <div class="benefit"><div class="icon">✓</div> Fórmula segura y efectiva</div>
+      <div class="benefit"><div class="icon">✓</div> No daña ni decolora</div>
+      <div class="benefit"><div class="icon">✓</div> Resultado tipo limpieza profesional</div>
     </div>
   </div>
 
 </div>
 
 <script>
-function showTab(index) {
-  const tabs = document.querySelectorAll('.tab');
-  const contents = document.querySelectorAll('.tab-content');
+const tabs = document.querySelectorAll('.tab');
+const contents = document.querySelectorAll('.tab-content');
+const indicator = document.getElementById('indicator');
 
+function updateIndicator(el) {
+  indicator.style.width = el.offsetWidth + 'px';
+  indicator.style.left = el.offsetLeft + 'px';
+}
+
+function showTab(index) {
   tabs.forEach((tab, i) => {
     tab.classList.toggle('active', i === index);
     contents[i].classList.toggle('active', i === index);
   });
+
+  updateIndicator(tabs[index]);
 }
+
+// Init
+window.onload = () => {
+  updateIndicator(document.querySelector('.tab.active'));
+};
 </script>
 
 </body>
