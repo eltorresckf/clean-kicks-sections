@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descripción Producto</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid #222;
+  margin-bottom: 25px;
+}
+
+.tab {
+  cursor: pointer;
+  padding-bottom: 10px;
+  color: #777;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s;
+}
+
+.tab.active {
+  color: #fff;
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+}
+
+/* Content */
+.tab-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.tab-content.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+p {
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+/* Beneficios */
+.benefits {
+  margin-top: 20px;
+}
+
+.benefits div {
+  margin-bottom: 10px;
+  color: #ddd;
+}
+
+.check {
+  color: #fff;
+  margin-right: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab(0)">¿Qué hace?</div>
+    <div class="tab" onclick="showTab(1)">¿Por qué funciona?</div>
+  </div>
+
+  <div class="tab-content active">
+    <h2>Mantén tus sneakers como nuevos</h2>
+    <p>
+      Limpia tus tenis desde casa de forma rápida y efectiva, eliminando suciedad acumulada y manchas difíciles sin dañarlos.
+    </p>
+    <p>
+      Ideal para quienes usan sus pares diario y quieren mantenerlos fresh sin complicarse.
+    </p>
+    <p>
+      Funciona en piel, textil y materiales sintéticos.
+    </p>
+
+    <div class="benefits">
+      <div><span class="check">✔</span> Limpieza visible desde el primer uso</div>
+      <div><span class="check">✔</span> Mejora el color y apariencia</div>
+      <div><span class="check">✔</span> Aumenta la vida útil de tus tenis</div>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <h2>Limpieza efectiva sin dañar</h2>
+    <p>
+      La fórmula especializada elimina la suciedad sin maltratar los materiales, manteniendo la textura y el color original.
+    </p>
+    <p>
+      Los cepillos de distintas densidades permiten limpiar cada parte del tenis a profundidad sin rayar ni desgastar.
+    </p>
+    <p>
+      Es el mismo tipo de limpieza que usaría un profesional, pero desde tu casa.
+    </p>
+
+    <div class="benefits">
+      <div><span class="check">✔</span> Fórmula segura para múltiples materiales</div>
+      <div><span class="check">✔</span> Limpieza profunda sin desgaste</div>
+      <div><span class="check">✔</span> Resultados tipo profesional</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(index) {
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach((tab, i) => {
+    tab.classList.toggle('active', i === index);
+    contents[i].classList.toggle('active', i === index);
+  });
+}
+</script>
+
+</body>
+</html>
