@@ -15,30 +15,36 @@
     .container {
       max-width: 600px;
       margin: auto;
-      padding: 10px;
+      padding: 12px;
     }
 
     .card {
-      background: #f5f5f5;
-      border-radius: 12px;
-      padding: 15px;
+      background: #181818;
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
     .item {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
+      padding: 12px 0;
       font-size: 14px;
-      color: #222;
+      color: #f5f5f5;
     }
 
-    .item:last-child {
-      margin-bottom: 0;
+    .item:not(:last-child) {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .icon {
-      margin-right: 10px;
-      font-size: 18px;
+      margin-right: 12px;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .text {
+      letter-spacing: 0.2px;
     }
   </style>
 </head>
@@ -50,23 +56,29 @@
 
     <div class="item">
       <span class="icon">🧼</span>
-      Resultados visibles desde la primera limpieza
+      <span class="text">Resultados visibles desde la primera limpieza</span>
     </div>
 
     <div class="item">
       <span class="icon">👟</span>
-      Ideal para sneakers de todo tipo
+      <span class="text">Ideal para todo tipo de sneakers</span>
     </div>
 
     <div class="item">
       <span class="icon">🚚</span>
-      Envíos a todo México
+      <span class="text">Envíos a todo México</span>
     </div>
 
     <div class="item">
       <span class="icon">🔒</span>
-      Compra 100% segura
+      <span class="text">Compra 100% segura</span>
     </div>
+
+  </div>
+</div>
+
+</body>
+</html>
 
   </div>
 </div>
