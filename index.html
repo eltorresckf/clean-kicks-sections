@@ -77,11 +77,16 @@
   </div>
 </div>
 
-</body>
-</html>
+<!-- 🔥 SCRIPT AUTO ALTURA -->
+<script>
+  function sendHeight() {
+    const height = document.body.scrollHeight;
+    window.parent.postMessage({ height: height }, "*");
+  }
 
-  </div>
-</div>
+  window.onload = sendHeight;
+  window.onresize = sendHeight;
+</script>
 
 </body>
 </html>
