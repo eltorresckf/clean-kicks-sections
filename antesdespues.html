@@ -19,11 +19,10 @@ body {
   padding: 20px;
 }
 
-/* --- SLIDER PRO --- */
 .slider {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1; /* 👈 CLAVE PARA CENTRADO PERFECTO */
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 14px;
 }
@@ -32,10 +31,10 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 👈 IMAGENES BIEN AJUSTADAS */
+  object-fit: cover;
 }
 
-/* --- AFTER --- */
+/* 👇 AHORA ESTA ES LA IMAGEN QUE SE REVELA */
 .after {
   position: absolute;
   top: 0;
@@ -45,7 +44,7 @@ body {
   overflow: hidden;
 }
 
-/* --- DIVISOR --- */
+/* Línea */
 .divider {
   position: absolute;
   top: 0;
@@ -57,7 +56,7 @@ body {
   box-shadow: 0 0 12px rgba(255,255,255,0.6);
 }
 
-/* --- BOTÓN CENTRAL --- */
+/* Botón */
 .handle {
   position: absolute;
   top: 50%;
@@ -72,7 +71,6 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.6);
 }
 
-/* --- LABELS --- */
 .label {
   position: absolute;
   top: 12px;
@@ -81,7 +79,6 @@ body {
   font-weight: bold;
   background: rgba(0,0,0,0.6);
   border-radius: 6px;
-  letter-spacing: 1px;
 }
 
 .before-label {
@@ -92,7 +89,6 @@ body {
   right: 12px;
 }
 
-/* --- COPY --- */
 .copy {
   text-align: center;
   margin-top: 15px;
@@ -107,8 +103,11 @@ body {
 <div class="container">
 
   <div class="slider" id="slider">
+
+    <!-- 👇 BASE: ANTES -->
     <img src="https://i.imgur.com/5QbcVo2.jpeg" alt="Antes">
-    
+
+    <!-- 👇 CAPA: DESPUÉS -->
     <div class="after" id="after">
       <img src="https://i.imgur.com/k1RWxUB.jpeg" alt="Después">
     </div>
@@ -134,7 +133,7 @@ const divider = document.getElementById('divider');
 
 let isDragging = false;
 
-// --- MOUSE ---
+// Mouse
 divider.addEventListener('mousedown', () => isDragging = true);
 window.addEventListener('mouseup', () => isDragging = false);
 
@@ -143,7 +142,7 @@ window.addEventListener('mousemove', (e) => {
   moveSlider(e.clientX);
 });
 
-// --- TOUCH ---
+// Touch
 slider.addEventListener('touchstart', () => isDragging = true);
 window.addEventListener('touchend', () => isDragging = false);
 
@@ -152,7 +151,6 @@ window.addEventListener('touchmove', (e) => {
   moveSlider(e.touches[0].clientX);
 });
 
-// --- FUNCIÓN ---
 function moveSlider(clientX) {
   const rect = slider.getBoundingClientRect();
   let x = clientX - rect.left;
@@ -166,7 +164,7 @@ function moveSlider(clientX) {
   divider.style.left = percent + "%";
 }
 
-// --- AUTO ANIMACIÓN ---
+// Animación inicial
 let autoMove = true;
 let direction = 1;
 
@@ -187,10 +185,8 @@ function animate() {
 
 animate();
 
-// detener animación si interactúan
 divider.addEventListener('mousedown', () => autoMove = false);
 slider.addEventListener('touchstart', () => autoMove = false);
-
 </script>
 
 </body>
