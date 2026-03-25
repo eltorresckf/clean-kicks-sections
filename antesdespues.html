@@ -35,7 +35,7 @@ body {
   object-fit: cover;
 }
 
-/* CAPA DESPUÉS (CORRECTA) */
+/* CAPA DESPUÉS */
 .after {
   position: absolute;
   inset: 0;
@@ -105,12 +105,12 @@ body {
 
   <div class="slider" id="slider">
 
-    <!-- BASE: ANTES -->
-    <img src="https://i.imgur.com/5QbcVo2.jpeg" alt="Antes">
+    <!-- ANTES (BASE) -->
+    <img src="https://i.imgur.com/k1RWxUB.jpeg" alt="Antes">
 
-    <!-- CAPA: DESPUÉS -->
+    <!-- DESPUÉS (REVEAL) -->
     <div class="after" id="after">
-      <img src="https://i.imgur.com/k1RWxUB.jpeg" alt="Después">
+      <img src="https://i.imgur.com/5QbcVo2.jpeg" alt="Después">
     </div>
 
     <!-- DIVISOR -->
@@ -165,7 +165,6 @@ function moveSlider(clientX) {
 
   const percent = (x / rect.width) * 100;
 
-  // 👇 AQUÍ ESTÁ LA MAGIA
   after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
   divider.style.left = percent + "%";
 }
@@ -173,12 +172,12 @@ function moveSlider(clientX) {
 // ANIMACIÓN AUTOMÁTICA
 let autoMove = true;
 let direction = 1;
+let current = 50; // posición inicial
 
 function animate() {
   if (!autoMove) return;
 
-  let current = 50;
-  current += direction * 0.3;
+  current += direction * 0.2;
 
   if (current >= 80) direction = -1;
   if (current <= 20) direction = 1;
@@ -191,7 +190,7 @@ function animate() {
 
 animate();
 
-// detener animación al interactuar
+// DETENER ANIMACIÓN AL INTERACTUAR
 divider.addEventListener('mousedown', () => autoMove = false);
 slider.addEventListener('touchstart', () => autoMove = false);
 
