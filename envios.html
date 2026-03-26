@@ -1,48 +1,17 @@
-<div class="shipping-wrapper">
-
-  <p class="shipping-message" id="shipping-message"></p>
-
-  <div class="shipping-timeline">
-    
-    <div class="step">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-        </svg>
-      </div>
-      <p class="title">Pedido</p>
-      <p class="date" id="order-date"></p>
-    </div>
-
-    <div class="arrow"></div>
-
-    <div class="step">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M3 7h13v10H3zM16 10h3l2 3v4h-5zM5 19a2 2 0 1 0 0.001-4.001A2 2 0 0 0 5 19zm12 0a2 2 0 1 0 0.001-4.001A2 2 0 0 0 17 19z"/>
-        </svg>
-      </div>
-      <p class="title">Envío</p>
-      <p class="date" id="ship-date"></p>
-    </div>
-
-    <div class="arrow"></div>
-
-    <div class="step">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M21 8v13H3V8M1 3h22v5H1z"/>
-        </svg>
-      </div>
-      <p class="title">Entrega</p>
-      <p class="date" id="delivery-date"></p>
-    </div>
-
-  </div>
-
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
 .shipping-wrapper {
   background: #0f0f0f;
   padding: 20px;
@@ -89,8 +58,6 @@
   width: 20px;
   height: 20px;
   fill: white;
-
-  /* 🔥 borde negro SOLO en el ícono */
   stroke: #000;
   stroke-width: 1.2;
 }
@@ -142,6 +109,53 @@
   }
 }
 </style>
+</head>
+
+<body>
+
+<div class="shipping-wrapper">
+
+  <p class="shipping-message" id="shipping-message"></p>
+
+  <div class="shipping-timeline">
+    
+    <div class="step">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        </svg>
+      </div>
+      <p class="title">Pedido</p>
+      <p class="date" id="order-date"></p>
+    </div>
+
+    <div class="arrow"></div>
+
+    <div class="step">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 7h13v10H3zM16 10h3l2 3v4h-5zM5 19a2 2 0 1 0 0.001-4.001A2 2 0 0 0 5 19zm12 0a2 2 0 1 0 0.001-4.001A2 2 0 0 0 17 19z"/>
+        </svg>
+      </div>
+      <p class="title">Envío</p>
+      <p class="date" id="ship-date"></p>
+    </div>
+
+    <div class="arrow"></div>
+
+    <div class="step">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 8v13H3V8M1 3h22v5H1z"/>
+        </svg>
+      </div>
+      <p class="title">Entrega</p>
+      <p class="date" id="delivery-date"></p>
+    </div>
+
+  </div>
+
+</div>
 
 <script>
 function formatDate(date) {
@@ -212,3 +226,6 @@ message += ". Recíbelo entre " +
 
 document.getElementById("shipping-message").textContent = message;
 </script>
+
+</body>
+</html>
