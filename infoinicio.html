@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: transparent;
+  }
+
+  .container {
+    max-width: 700px; /* más compacto */
+    margin: auto;
+    padding: 15px 10px;
+  }
+
+  .grid {
+    display: flex;
+    justify-content: center; /* centra el bloque */
+    align-items: center;
+    gap: 40px; /* espacio entre elementos */
+    text-align: center;
+  }
+
+  .item {
+    min-width: 120px;
+    color: white;
+  }
+
+  .icon {
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+
+  .title {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+
+  .payments {
+    margin-top: 10px;
+    text-align: center;
+    opacity: 0.7;
+    font-size: 11px;
+  }
+
+  /* 🔥 IMPORTANTE: quitamos el stack en mobile */
+  @media (max-width: 768px) {
+    .grid {
+      flex-direction: row; /* SIEMPRE horizontal */
+      gap: 20px;
+    }
+
+    .item {
+      min-width: auto;
+      font-size: 11px;
+    }
+
+    .icon {
+      font-size: 22px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  
+  <div class="grid">
+
+    <div class="item">
+      <div class="icon">🚚</div>
+      <div class="title">ENVÍO A TODO MÉXICO</div>
+    </div>
+
+    <div class="item">
+      <div class="icon">🛡️</div>
+      <div class="title">GARANTÍA 30 DÍAS</div>
+    </div>
+
+    <div class="item">
+      <div class="icon">💳</div>
+      <div class="title">PAGO SEGURO</div>
+    </div>
+
+  </div>
+
+  <div class="payments">
+    Tarjetas · MercadoPago · PayPal
+  </div>
+
+</div>
+
+</body>
+</html>
