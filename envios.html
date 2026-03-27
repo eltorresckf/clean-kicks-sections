@@ -10,14 +10,35 @@ body {
   padding: 0;
   overflow: hidden;
   background: transparent;
+  font-family: sans-serif;
 }
+
+/* 🔥 CONTENEDOR GLOBAL (ESTÁNDAR PARA TODAS TUS SECCIONES) */
+.ckf-wrapper {
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.ckf-container {
+  width: 100%;
+}
+
+/* SOLO DESKTOP */
+@media (min-width: 1024px) {
+  .ckf-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+}
+
+/* ===== TU DISEÑO ===== */
 
 .shipping-wrapper {
   background: #0f0f0f;
   padding: 20px;
   border-radius: 16px;
   text-align: center;
-  font-family: sans-serif;
   border: 1px solid rgba(255,255,255,0.05);
 }
 
@@ -98,7 +119,7 @@ body {
   100% { opacity: 0.3; }
 }
 
-/* 🔥 SIEMPRE HORIZONTAL (incluso en móvil) */
+/* 🔥 MOBILE */
 @media (max-width: 600px) {
   .shipping-timeline {
     flex-direction: row;
@@ -114,48 +135,54 @@ body {
 
 <body>
 
-<div class="shipping-wrapper">
+<div class="ckf-wrapper">
+  <div class="ckf-container">
 
-  <p class="shipping-message" id="shipping-message"></p>
+    <div class="shipping-wrapper">
 
-  <div class="shipping-timeline">
-    
-    <div class="step">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-        </svg>
+      <p class="shipping-message" id="shipping-message"></p>
+
+      <div class="shipping-timeline">
+        
+        <div class="step">
+          <div class="icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <p class="title">Pedido</p>
+          <p class="date" id="order-date"></p>
+        </div>
+
+        <div class="arrow"></div>
+
+        <div class="step">
+          <div class="icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 7h13v10H3zM16 10h3l2 3v4h-5zM5 19a2 2 0 1 0 0.001-4.001A2 2 0 0 0 5 19zm12 0a2 2 0 1 0 0.001-4.001A2 2 0 0 0 17 19z"/>
+            </svg>
+          </div>
+          <p class="title">Envío</p>
+          <p class="date" id="ship-date"></p>
+        </div>
+
+        <div class="arrow"></div>
+
+        <div class="step">
+          <div class="icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 8v13H3V8M1 3h22v5H1z"/>
+            </svg>
+          </div>
+          <p class="title">Entrega</p>
+          <p class="date" id="delivery-date"></p>
+        </div>
+
       </div>
-      <p class="title">Pedido</p>
-      <p class="date" id="order-date"></p>
-    </div>
 
-    <div class="arrow"></div>
-
-    <div class="step">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M3 7h13v10H3zM16 10h3l2 3v4h-5zM5 19a2 2 0 1 0 0.001-4.001A2 2 0 0 0 5 19zm12 0a2 2 0 1 0 0.001-4.001A2 2 0 0 0 17 19z"/>
-        </svg>
-      </div>
-      <p class="title">Envío</p>
-      <p class="date" id="ship-date"></p>
-    </div>
-
-    <div class="arrow"></div>
-
-    <div class="step">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M21 8v13H3V8M1 3h22v5H1z"/>
-        </svg>
-      </div>
-      <p class="title">Entrega</p>
-      <p class="date" id="delivery-date"></p>
     </div>
 
   </div>
-
 </div>
 
 <script>
