@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ Clean Kicks</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+  }
+
+  .faq-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .faq-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    text-align: left;
+    padding: 18px 0;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question span {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    font-size: 14px;
+    color: #ccc;
+  }
+
+  .faq-answer p {
+    margin: 0 0 15px 0;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 200px;
+  }
+
+  .faq-item.active .faq-question span {
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 768px) {
+    .faq-title {
+      font-size: 22px;
+    }
+
+    .faq-question {
+      font-size: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="faq-container">
+  <div class="faq-title">Preguntas frecuentes</div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Funciona en cualquier tipo de tenis?
+      <span>+</span>
+    </button>
+    <div class="faq-answer">
+      <p>Sí, nuestros productos funcionan en la mayoría de materiales como piel, tela, sintéticos y suelas de goma. Recomendamos usar el cepillo adecuado según el material.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿El limpiador daña los tenis?
+      <span>+</span>
+    </button>
+    <div class="faq-answer">
+      <p>No. Nuestra fórmula está diseñada para limpiar sin dañar, siempre y cuando se utilice correctamente.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Cuántas limpiezas rinde el kit?
+      <span>+</span>
+    </button>
+    <div class="faq-answer">
+      <p>Depende del nivel de suciedad, pero en promedio puedes limpiar entre 30 y 50 pares.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Hacen envíos a todo México?
+      <span>+</span>
+    </button>
+    <div class="faq-answer">
+      <p>Sí, hacemos envíos a todo México de forma segura y rápida.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Qué pasa si no me funciona?
+      <span>+</span>
+    </button>
+    <div class="faq-answer">
+      <p>Contamos con garantía de satisfacción. Si tienes algún problema, nuestro equipo te ayudará.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const items = document.querySelectorAll('.faq-item');
+
+  items.forEach(item => {
+    const button = item.querySelector('.faq-question');
+
+    button.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+</script>
+
+</body>
+</html>
