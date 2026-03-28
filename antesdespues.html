@@ -3,60 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antes y Después</title>
 
 <style>
-html, body {
+body {
   margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background: transparent;
+  background: #0d0d0d;
   font-family: Arial, sans-serif;
   color: #fff;
 }
 
-.ckf-wrapper {
-  width: 100%;
-  padding: 0 16px;
-  box-sizing: border-box;
-}
-
-.ckf-container {
-  width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .ckf-container {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-}
-
-.section-box {
-  background: #0d0d0d;
-  border-radius: 16px;
+.container {
+  max-width: 800px;
+  margin: auto;
   padding: 20px;
-  border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* 🔥 SLIDER PRO */
+/* SLIDER */
 .slider {
   position: relative;
   width: 100%;
-  height: 520px;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 14px;
 }
 
-/* 🔥 IMÁGENES BIEN CENTRADAS */
 .slider img {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center; /* 👈 CLAVE */
 }
 
-/* AFTER */
+/* CAPA DESPUÉS */
 .after {
   position: absolute;
   inset: 0;
@@ -64,18 +43,19 @@ html, body {
   clip-path: inset(0 50% 0 0);
 }
 
-/* DIVIDER */
+/* DIVISOR */
 .divider {
   position: absolute;
   top: 0;
   left: 50%;
   width: 3px;
   height: 100%;
-  background: #fff;
+  background: rgba(255,255,255,0.95);
   cursor: ew-resize;
+  box-shadow: 0 0 12px rgba(255,255,255,0.6);
 }
 
-/* HANDLE */
+/* BOTÓN */
 .handle {
   position: absolute;
   top: 50%;
@@ -83,81 +63,71 @@ html, body {
   transform: translate(-50%, -50%);
   background: white;
   color: black;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 50px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
 }
 
 /* LABELS */
 .label {
   position: absolute;
   top: 12px;
-  padding: 6px 10px;
+  padding: 6px 12px;
   font-size: 12px;
+  font-weight: bold;
   background: rgba(0,0,0,0.6);
   border-radius: 6px;
 }
 
-.before-label { left: 12px; }
-.after-label { right: 12px; }
+.before-label {
+  left: 12px;
+}
 
+.after-label {
+  right: 12px;
+}
+
+/* COPY */
 .copy {
   text-align: center;
   margin-top: 15px;
   font-size: 14px;
   opacity: 0.85;
 }
-
-/* 📱 MOBILE */
-@media (max-width: 600px) {
-  .slider {
-    height: 360px;
-  }
-
-  /* 🔥 AJUSTE EXTRA MOBILE */
-  .slider img {
-    object-position: center top;
-  }
-
-  .section-box {
-    padding: 16px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<div class="ckf-wrapper">
-  <div class="ckf-container">
+<div class="container">
 
-    <div class="section-box">
+  <div class="slider" id="slider">
 
-      <div class="slider" id="slider">
+    <!-- ANTES (BASE) -->
+    <img src="https://i.imgur.com/k1RWxUB.jpeg" alt="Antes">
 
-        <img src="https://i.imgur.com/k1RWxUB.jpeg">
-
-        <div class="after" id="after">
-          <img src="https://i.imgur.com/5QbcVo2.jpeg">
-        </div>
-
-        <div class="divider" id="divider">
-          <div class="handle">↔</div>
-        </div>
-
-        <div class="label before-label">ANTES</div>
-        <div class="label after-label">DESPUÉS</div>
-
-      </div>
-
-      <div class="copy">
-        De esto… a esto en minutos. Resultados reales.
-      </div>
-
+    <!-- DESPUÉS (REVEAL) -->
+    <div class="after" id="after">
+      <img src="https://i.imgur.com/5QbcVo2.jpeg" alt="Después">
     </div>
 
+    <!-- DIVISOR -->
+    <div class="divider" id="divider">
+      <div class="handle">↔</div>
+    </div>
+
+    <!-- LABELS -->
+    <div class="label before-label">ANTES</div>
+    <div class="label after-label">DESPUÉS</div>
+
   </div>
+
+  <div class="copy">
+    De esto… a esto en minutos. Resultados reales.
+  </div>
+
 </div>
 
 <script>
@@ -167,6 +137,7 @@ const divider = document.getElementById('divider');
 
 let isDragging = false;
 
+// MOUSE
 divider.addEventListener('mousedown', () => isDragging = true);
 window.addEventListener('mouseup', () => isDragging = false);
 
@@ -175,6 +146,7 @@ window.addEventListener('mousemove', (e) => {
   moveSlider(e.clientX);
 });
 
+// TOUCH
 slider.addEventListener('touchstart', () => isDragging = true);
 window.addEventListener('touchend', () => isDragging = false);
 
@@ -183,6 +155,7 @@ window.addEventListener('touchmove', (e) => {
   moveSlider(e.touches[0].clientX);
 });
 
+// FUNCIÓN PRINCIPAL
 function moveSlider(clientX) {
   const rect = slider.getBoundingClientRect();
   let x = clientX - rect.left;
@@ -195,6 +168,32 @@ function moveSlider(clientX) {
   after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
   divider.style.left = percent + "%";
 }
+
+// ANIMACIÓN AUTOMÁTICA
+let autoMove = true;
+let direction = 1;
+let current = 50; // posición inicial
+
+function animate() {
+  if (!autoMove) return;
+
+  current += direction * 0.2;
+
+  if (current >= 80) direction = -1;
+  if (current <= 20) direction = 1;
+
+  after.style.clipPath = `inset(0 ${100 - current}% 0 0)`;
+  divider.style.left = current + "%";
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// DETENER ANIMACIÓN AL INTERACTUAR
+divider.addEventListener('mousedown', () => autoMove = false);
+slider.addEventListener('touchstart', () => autoMove = false);
+
 </script>
 
 </body>
