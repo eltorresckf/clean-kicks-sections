@@ -7,85 +7,80 @@
 <style>
 body {
   margin: 0;
+  background: transparent;
   font-family: Arial, sans-serif;
+}
+
+/* CONTENEDOR STICKY */
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background: #000;
+  padding: 12px 16px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+  z-index: 9999;
 }
 
-.cta-container {
-  max-width: 900px;
+/* CONTENIDO */
+.sticky-content {
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 30px 20px;
-  text-align: center;
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.cta-text {
-  font-size: 18px;
-  margin-bottom: 20px;
+/* TEXTO */
+.sticky-text {
+  color: #fff;
+  font-size: 14px;
   opacity: 0.9;
 }
 
-.cta-button {
-  display: inline-block;
+/* BOTÓN */
+.sticky-button {
   background: #fff;
   color: #000;
-  font-size: 18px;
+  padding: 12px 18px;
+  border-radius: 10px;
   font-weight: bold;
-  padding: 16px 30px;
-  border-radius: 12px;
   text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.cta-button:hover {
-  background: #ddd;
-  transform: scale(1.05);
-}
-
-.cta-subtext {
   font-size: 14px;
-  margin-top: 12px;
-  opacity: 0.7;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.sticky-button:hover {
+  background: #ddd;
+}
+
+/* SOLO MOBILE */
+@media (min-width: 768px) {
+  .sticky-bar {
+    display: none;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="cta-container">
-  
-  <div class="cta-text">
-    Dale a tus tenis el cuidado que merecen 👇
-  </div>
+<div class="sticky-bar">
+  <div class="sticky-content">
+    
+    <div class="sticky-text">
+      Tus tenis pueden verse como nuevos 🔥
+    </div>
 
-  <div class="cta-button" onclick="scrollToBuy()">
-    Comprar ahora
-  </div>
+    <a href="https://TUTIENDA.com/producto-kit" class="sticky-button">
+      Comprar ahora
+    </a>
 
-  <div class="cta-subtext">
-    Compra segura • Envíos a todo México 🇲🇽
   </div>
-
 </div>
-
-<script>
-function scrollToBuy() {
-  const botones = document.querySelectorAll('button, a');
-
-  for (let btn of botones) {
-    if (btn.innerText.toLowerCase().includes('agregar') || 
-        btn.innerText.toLowerCase().includes('comprar')) {
-      
-      btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      btn.click();
-      return;
-    }
-  }
-
-  alert("No se encontró el botón de compra");
-}
-</script>
 
 </body>
 </html>
