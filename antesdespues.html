@@ -14,7 +14,6 @@ html, body {
   color: #fff;
 }
 
-/* CKF BASE */
 .ckf-wrapper {
   width: 100%;
   padding: 0 16px;
@@ -32,7 +31,6 @@ html, body {
   }
 }
 
-/* BOX */
 .section-box {
   background: #0d0d0d;
   border-radius: 16px;
@@ -40,22 +38,22 @@ html, body {
   border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* 🔥 SLIDER FIX REAL */
+/* 🔥 SLIDER PRO */
 .slider {
   position: relative;
   width: 100%;
-  height: 520px; /* desktop */
+  height: 520px;
   overflow: hidden;
   border-radius: 14px;
-  background: #000;
 }
 
-/* 🔥 IMÁGENES SIN RECORTE */
+/* 🔥 IMÁGENES BIEN CENTRADAS */
 .slider img {
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 👈 CLAVE */
+  object-fit: cover;
+  object-position: center center; /* 👈 CLAVE */
 }
 
 /* AFTER */
@@ -104,7 +102,6 @@ html, body {
 .before-label { left: 12px; }
 .after-label { right: 12px; }
 
-/* COPY */
 .copy {
   text-align: center;
   margin-top: 15px;
@@ -116,6 +113,11 @@ html, body {
 @media (max-width: 600px) {
   .slider {
     height: 360px;
+  }
+
+  /* 🔥 AJUSTE EXTRA MOBILE */
+  .slider img {
+    object-position: center top;
   }
 
   .section-box {
@@ -134,20 +136,16 @@ html, body {
 
       <div class="slider" id="slider">
 
-        <!-- ANTES -->
         <img src="https://i.imgur.com/k1RWxUB.jpeg">
 
-        <!-- DESPUÉS -->
         <div class="after" id="after">
           <img src="https://i.imgur.com/5QbcVo2.jpeg">
         </div>
 
-        <!-- DIVIDER -->
         <div class="divider" id="divider">
           <div class="handle">↔</div>
         </div>
 
-        <!-- LABELS -->
         <div class="label before-label">ANTES</div>
         <div class="label after-label">DESPUÉS</div>
 
