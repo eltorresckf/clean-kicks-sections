@@ -49,7 +49,6 @@
     transition: transform 0.3s ease;
   }
 
-  /* 🔥 NUEVO SISTEMA (SIN HEIGHT DINÁMICO) */
   .faq-answer {
     display: none;
     font-size: 14px;
@@ -101,7 +100,7 @@
       <span>+</span>
     </button>
     <div class="faq-answer">
-      <p>El limpiador de 250ml rinde aproximadamente para 50 pares (puede variar según suciedad y tamaño).</p>
+      <p>El limpiador de 250ml. rinde para un aproximado de 50 pares (esta cantidad puede variar dependiendo del nivel de suciedad de tus pares, el tamaño, etc.</p>
     </div>
   </div>
 
@@ -141,7 +140,7 @@
       <span>+</span>
     </button>
     <div class="faq-answer">
-      <p>Ofrecemos asesoría por WhatsApp. Si no funciona siguiendo instrucciones, te devolvemos tu dinero.</p>
+      <p>Ofrecemos asesoría a través de nuestro WhatsApp por si necesitas ayuda para la limpieza de tus pares. Si el producto no funciona después de seguir las instrucciones de uso te regresamos tu dinero.</p>
     </div>
   </div>
 
@@ -151,7 +150,7 @@
       <span>+</span>
     </button>
     <div class="faq-answer">
-      <p>Porque está hecho para cuidar tus sneakers de forma efectiva, fácil y al mejor precio.</p>
+      <p>Porque está hecho para cuidar tus sneakers de manera integra, fácil y al mejor precio.</p>
     </div>
   </div>
 
@@ -160,21 +159,29 @@
 <script>
   const items = document.querySelectorAll('.faq-item');
 
+  function updateHeight() {
+    const height = document.body.scrollHeight;
+    parent.postMessage({ type: "resize", height: height }, "*");
+  }
+
   items.forEach(item => {
     const button = item.querySelector('.faq-question');
 
     button.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
 
-      // cerrar todos
       items.forEach(i => i.classList.remove('active'));
 
-      // abrir solo uno
       if (!isActive) {
         item.classList.add('active');
       }
+
+      setTimeout(updateHeight, 200);
     });
   });
+
+  window.addEventListener("load", updateHeight);
+  window.addEventListener("resize", updateHeight);
 </script>
 
 </body>
