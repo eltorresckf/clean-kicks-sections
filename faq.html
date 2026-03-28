@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FAQ Clean Kicks</title>
+
 <style>
   body {
     margin: 0;
@@ -48,17 +49,19 @@
     transition: transform 0.3s ease;
   }
 
-  /* NUEVO SISTEMA SIN MAX-HEIGHT */
+  /* 🔥 NUEVO SISTEMA (SIN HEIGHT DINÁMICO) */
   .faq-answer {
-    height: 0;
-    overflow: hidden;
-    transition: height 0.3s ease;
+    display: none;
     font-size: 14px;
     color: #ccc;
   }
 
   .faq-answer p {
     margin: 0 0 15px 0;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
   }
 
   .faq-item.active .faq-question span {
@@ -76,6 +79,7 @@
   }
 </style>
 </head>
+
 <body>
 
 <div class="faq-container">
@@ -97,7 +101,7 @@
       <span>+</span>
     </button>
     <div class="faq-answer">
-      <p>El limpiador de 250ml. rinde para un aproximado de 50 pares (esta cantidad puede variar dependiendo del nivel de suciedad de tus pares, el tamaño, etc.</p>
+      <p>El limpiador de 250ml rinde aproximadamente para 50 pares (puede variar según suciedad y tamaño).</p>
     </div>
   </div>
 
@@ -137,7 +141,7 @@
       <span>+</span>
     </button>
     <div class="faq-answer">
-      <p>Ofrecemos asesoría a través de nuestro WhatsApp por si necesitas ayuda para la limpieza de tus pares. Si el producto no funciona después de seguir las instrucciones de uso te regresamos tu dinero.</p>
+      <p>Ofrecemos asesoría por WhatsApp. Si no funciona siguiendo instrucciones, te devolvemos tu dinero.</p>
     </div>
   </div>
 
@@ -147,7 +151,7 @@
       <span>+</span>
     </button>
     <div class="faq-answer">
-      <p>Porque está hecho para cuidar tus sneakers de manera integra, fácil y al mejor precio.</p>
+      <p>Porque está hecho para cuidar tus sneakers de forma efectiva, fácil y al mejor precio.</p>
     </div>
   </div>
 
@@ -158,20 +162,16 @@
 
   items.forEach(item => {
     const button = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
 
     button.addEventListener('click', () => {
-      if (item.classList.contains('active')) {
-        // cerrar
-        answer.style.height = answer.scrollHeight + 'px';
-        requestAnimationFrame(() => {
-          answer.style.height = '0px';
-        });
-        item.classList.remove('active');
-      } else {
-        // abrir
+      const isActive = item.classList.contains('active');
+
+      // cerrar todos
+      items.forEach(i => i.classList.remove('active'));
+
+      // abrir solo uno
+      if (!isActive) {
         item.classList.add('active');
-        answer.style.height = answer.scrollHeight + 'px';
       }
     });
   });
