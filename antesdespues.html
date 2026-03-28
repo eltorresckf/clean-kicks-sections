@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* 🔥 FIX GLOBAL SCROLL */
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  overflow-y: auto;
   background: transparent;
   font-family: Arial, sans-serif;
   color: #fff;
@@ -41,6 +43,7 @@ html, body {
   border-radius: 16px;
   padding: 20px;
   border: 1px solid rgba(255,255,255,0.05);
+  overflow: hidden; /* 🔥 evita scroll fantasma */
 }
 
 /* SLIDER */
@@ -205,7 +208,7 @@ function moveSlider(clientX) {
   divider.style.left = percent + "%";
 }
 
-/* 🔥 AUTO ANIMACIÓN */
+/* AUTO ANIMACIÓN */
 let autoMove = true;
 let direction = 1;
 let current = 50;
