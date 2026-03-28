@@ -48,20 +48,17 @@
     transition: transform 0.3s ease;
   }
 
+  /* NUEVO SISTEMA SIN MAX-HEIGHT */
   .faq-answer {
-    max-height: 0;
+    height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: height 0.3s ease;
     font-size: 14px;
     color: #ccc;
   }
 
   .faq-answer p {
     margin: 0 0 15px 0;
-  }
-
-  .faq-item.active .faq-answer {
-    max-height: 200px;
   }
 
   .faq-item.active .faq-question span {
@@ -161,9 +158,21 @@
 
   items.forEach(item => {
     const button = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
 
     button.addEventListener('click', () => {
-      item.classList.toggle('active');
+      if (item.classList.contains('active')) {
+        // cerrar
+        answer.style.height = answer.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          answer.style.height = '0px';
+        });
+        item.classList.remove('active');
+      } else {
+        // abrir
+        item.classList.add('active');
+        answer.style.height = answer.scrollHeight + 'px';
+      }
     });
   });
 </script>
