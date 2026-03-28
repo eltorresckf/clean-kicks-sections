@@ -13,10 +13,13 @@ body {
   color: #fff;
 }
 
+/* CONTENEDOR FULL WIDTH (CLAVE) */
 .container {
-  max-width: 800px;
+  width: 100%;
+  max-width: 1100px; /* AJUSTA este valor al ancho de tus otras secciones */
   margin: auto;
-  padding: 20px;
+  padding: 20px 20px 10px; /* menos espacio abajo */
+  box-sizing: border-box;
 }
 
 /* SLIDER */
@@ -92,9 +95,16 @@ body {
 /* COPY */
 .copy {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 12px;
   font-size: 14px;
   opacity: 0.85;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px 15px 5px; /* quita espacio abajo en mobile */
+  }
 }
 </style>
 </head>
@@ -105,20 +115,16 @@ body {
 
   <div class="slider" id="slider">
 
-    <!-- ANTES (BASE) -->
     <img src="https://i.imgur.com/k1RWxUB.jpeg" alt="Antes">
 
-    <!-- DESPUÉS (REVEAL) -->
     <div class="after" id="after">
       <img src="https://i.imgur.com/5QbcVo2.jpeg" alt="Después">
     </div>
 
-    <!-- DIVISOR -->
     <div class="divider" id="divider">
       <div class="handle">↔</div>
     </div>
 
-    <!-- LABELS -->
     <div class="label before-label">ANTES</div>
     <div class="label after-label">DESPUÉS</div>
 
@@ -155,7 +161,6 @@ window.addEventListener('touchmove', (e) => {
   moveSlider(e.touches[0].clientX);
 });
 
-// FUNCIÓN PRINCIPAL
 function moveSlider(clientX) {
   const rect = slider.getBoundingClientRect();
   let x = clientX - rect.left;
@@ -172,7 +177,7 @@ function moveSlider(clientX) {
 // ANIMACIÓN AUTOMÁTICA
 let autoMove = true;
 let direction = 1;
-let current = 50; // posición inicial
+let current = 50;
 
 function animate() {
   if (!autoMove) return;
@@ -190,10 +195,9 @@ function animate() {
 
 animate();
 
-// DETENER ANIMACIÓN AL INTERACTUAR
+// DETENER ANIMACIÓN
 divider.addEventListener('mousedown', () => autoMove = false);
 slider.addEventListener('touchstart', () => autoMove = false);
-
 </script>
 
 </body>
