@@ -5,12 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* 🔥 FIX GLOBAL */
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  overflow-y: auto;
   background: transparent;
   font-family: Arial, sans-serif;
   color: #fff;
@@ -21,7 +19,6 @@ html, body {
   width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 .ckf-container {
@@ -43,14 +40,13 @@ html, body {
   border-radius: 16px;
   padding: 20px;
   border: 1px solid rgba(255,255,255,0.05);
-  overflow: hidden;
 }
 
-/* SLIDER */
+/* 🔥 SLIDER (FIX REAL) */
 .slider {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 500px; /* 👈 CLAVE */
   overflow: hidden;
   border-radius: 14px;
 }
@@ -124,8 +120,12 @@ html, body {
   opacity: 0.85;
 }
 
-/* MOBILE */
+/* 📱 MOBILE */
 @media (max-width: 600px) {
+  .slider {
+    height: 320px; /* 👈 CLAVE MOBILE */
+  }
+
   .section-box {
     padding: 16px;
   }
@@ -232,21 +232,6 @@ animate();
 /* DETENER AUTO */
 divider.addEventListener('mousedown', () => autoMove = false);
 slider.addEventListener('touchstart', () => autoMove = false);
-
-/* 🔥 FIX REAL IFRAME (CLAVE) */
-function sendHeight() {
-  const height = document.body.scrollHeight;
-  window.parent.postMessage({ height: height }, "*");
-}
-
-const observer = new ResizeObserver(() => {
-  sendHeight();
-});
-
-observer.observe(document.body);
-
-/* respaldo */
-window.onload = sendHeight;
 </script>
 
 </body>
