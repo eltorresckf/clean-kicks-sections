@@ -15,10 +15,10 @@ body {
 .section {
   max-width: 1100px;
   margin: auto;
-  padding: 20px 10px;
+  padding: 10px 5px;
 }
 
-/* GRID */
+/* GRID SIEMPRE 4 */
 .row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -29,9 +29,8 @@ body {
 
 /* ITEM */
 .item {
-  padding: 18px 8px;
+  padding: 12px 4px;
   position: relative;
-  cursor: pointer;
 }
 
 .item:not(:last-child) {
@@ -40,100 +39,92 @@ body {
 
 /* ICONOS */
 .icon svg {
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   stroke: #ccc;
   stroke-width: 1.8;
   fill: none;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   transition: 0.3s;
 }
 
 /* TEXTO */
 .title {
-  font-size: 13px;
+  font-size: 11px;
   color: #ccc;
+  line-height: 1.2;
   transition: 0.3s;
 }
 
-/* HOVER */
-.item:hover svg {
-  stroke: #cd9341;
-  transform: scale(1.1);
-}
+/* HOVER SOLO DESKTOP */
+@media (min-width: 769px) {
 
-.item:hover .title {
-  color: #cd9341;
-}
+  .item {
+    cursor: pointer;
+  }
 
-/* TOOLTIP DESKTOP */
-.tooltip {
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, 10px);
-  width: 240px;
-  background: #111;
-  color: #ccc;
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #333;
-  font-size: 13px;
-  line-height: 1.5;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  .item:hover svg {
+    stroke: #cd9341;
+    transform: scale(1.1);
+  }
 
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.25s ease;
-  z-index: 10;
-}
-
-/* SHOW DESKTOP */
-.item:hover .tooltip {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-/* FLECHA */
-.tooltip::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 8px;
-  border-style: solid;
-  border-color: transparent transparent #111 transparent;
-}
-
-/* 🔥 MOBILE (SIN SCROLL, TIPO ACORDEÓN) */
-@media (max-width: 768px) {
-
-  .row {
-    grid-template-columns: repeat(4, 1fr); /* sigue horizontal */
+  .item:hover .title {
+    color: #cd9341;
   }
 
   .tooltip {
-    position: static;
-    transform: none;
-    width: 100%;
-    margin-top: 10px;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 10px);
+    width: 220px;
+    background: #111;
+    color: #ccc;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    font-size: 12px;
+    line-height: 1.5;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+
     opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 10px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 10;
+  }
+
+  .item:hover .tooltip {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 
   .tooltip::before {
-    display: none;
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #111 transparent;
   }
 
-  .item.open .tooltip {
-    opacity: 1;
-    max-height: 200px;
-    padding: 10px;
+}
+
+/* 🔥 MOBILE: SIN TOOLTIP */
+@media (max-width: 768px) {
+
+  .icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .title {
+    font-size: 10px;
+  }
+
+  .tooltip {
+    display: none; /* 🔥 elimina scroll */
   }
 
 }
@@ -145,7 +136,6 @@ body {
 <div class="section">
   <div class="row">
 
-    <!-- PAGOS -->
     <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
@@ -155,11 +145,10 @@ body {
       </div>
       <div class="title">Formas de pago</div>
       <div class="tooltip">
-        Aceptamos Visa, MasterCard, AMEX, PayPal, Mercado Pago, OXXO y transferencias SPEI.
+        Aceptamos Visa, MasterCard, AMEX, PayPal, Mercado Pago, OXXO y SPEI.
       </div>
     </div>
 
-    <!-- ENVÍOS -->
     <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
@@ -173,7 +162,6 @@ body {
       </div>
     </div>
 
-    <!-- GARANTÍA -->
     <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
@@ -186,7 +174,6 @@ body {
       </div>
     </div>
 
-    <!-- SEGURIDAD -->
     <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
@@ -201,19 +188,6 @@ body {
 
   </div>
 </div>
-
-<script>
-document.querySelectorAll('.item').forEach(item => {
-  item.addEventListener('click', () => {
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll('.item').forEach(i => {
-        if (i !== item) i.classList.remove('open');
-      });
-      item.classList.toggle('open');
-    }
-  });
-});
-</script>
 
 </body>
 </html>
