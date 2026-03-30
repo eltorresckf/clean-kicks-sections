@@ -11,12 +11,14 @@ body {
   background: #000;
 }
 
+/* CONTENEDOR */
 .section {
   max-width: 1100px;
   margin: auto;
   padding: 20px 10px;
 }
 
+/* GRID */
 .row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -25,6 +27,7 @@ body {
   border-bottom: 1px solid #222;
 }
 
+/* ITEM */
 .item {
   padding: 18px 8px;
   position: relative;
@@ -35,6 +38,7 @@ body {
   border-right: 1px solid #222;
 }
 
+/* ICONOS */
 .icon svg {
   width: 26px;
   height: 26px;
@@ -45,6 +49,7 @@ body {
   transition: 0.3s;
 }
 
+/* TEXTO */
 .title {
   font-size: 13px;
   color: #ccc;
@@ -61,7 +66,7 @@ body {
   color: #cd9341;
 }
 
-/* TOOLTIP */
+/* TOOLTIP DESKTOP */
 .tooltip {
   position: absolute;
   left: 50%;
@@ -83,7 +88,7 @@ body {
   z-index: 10;
 }
 
-/* SHOW */
+/* SHOW DESKTOP */
 .item:hover .tooltip {
   opacity: 1;
   transform: translate(-50%, 0);
@@ -101,12 +106,36 @@ body {
   border-color: transparent transparent #111 transparent;
 }
 
-/* MOBILE (tap) */
+/* 🔥 MOBILE (SIN SCROLL, TIPO ACORDEÓN) */
 @media (max-width: 768px) {
-  .item:active .tooltip {
-    opacity: 1;
-    transform: translate(-50%, 0);
+
+  .row {
+    grid-template-columns: repeat(4, 1fr); /* sigue horizontal */
   }
+
+  .tooltip {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: 10px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .tooltip::before {
+    display: none;
+  }
+
+  .item.open .tooltip {
+    opacity: 1;
+    max-height: 200px;
+    padding: 10px;
+  }
+
 }
 </style>
 </head>
@@ -116,6 +145,7 @@ body {
 <div class="section">
   <div class="row">
 
+    <!-- PAGOS -->
     <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
@@ -125,10 +155,11 @@ body {
       </div>
       <div class="title">Formas de pago</div>
       <div class="tooltip">
-        Aceptamos Visa, MasterCard, AMEX, PayPal, Mercado Pago, OXXO y SPEI.
+        Aceptamos Visa, MasterCard, AMEX, PayPal, Mercado Pago, OXXO y transferencias SPEI.
       </div>
     </div>
 
+    <!-- ENVÍOS -->
     <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
@@ -142,6 +173,7 @@ body {
       </div>
     </div>
 
+    <!-- GARANTÍA -->
     <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
@@ -154,6 +186,7 @@ body {
       </div>
     </div>
 
+    <!-- SEGURIDAD -->
     <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
@@ -168,6 +201,19 @@ body {
 
   </div>
 </div>
+
+<script>
+document.querySelectorAll('.item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('.item').forEach(i => {
+        if (i !== item) i.classList.remove('open');
+      });
+      item.classList.toggle('open');
+    }
+  });
+});
+</script>
 
 </body>
 </html>
