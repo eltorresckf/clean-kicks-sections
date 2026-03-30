@@ -11,41 +11,28 @@ body {
   background: #000;
 }
 
-/* CONTENEDOR */
 .section {
   max-width: 1100px;
   margin: auto;
   padding: 20px 10px;
 }
 
-/* GRID */
 .row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  align-items: center;
   text-align: center;
   border-top: 1px solid #222;
   border-bottom: 1px solid #222;
 }
 
-/* ITEM */
 .item {
   padding: 18px 8px;
   position: relative;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .item:not(:last-child) {
   border-right: 1px solid #222;
-}
-
-.item:hover svg {
-  stroke: #cd9341;
-}
-
-.icon {
-  margin-bottom: 8px;
 }
 
 .icon svg {
@@ -54,21 +41,31 @@ body {
   stroke: #ccc;
   stroke-width: 1.8;
   fill: none;
+  margin-bottom: 8px;
   transition: 0.3s;
 }
 
 .title {
   font-size: 13px;
-  font-weight: 600;
   color: #ccc;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.item:hover svg {
+  stroke: #cd9341;
+  transform: scale(1.1);
+}
+
+.item:hover .title {
+  color: #cd9341;
 }
 
 /* TOOLTIP */
 .tooltip {
-  display: none;
   position: absolute;
-  top: 100%;
   left: 50%;
+  top: 100%;
   transform: translate(-50%, 10px);
   width: 240px;
   background: #111;
@@ -76,13 +73,23 @@ body {
   padding: 15px;
   border-radius: 10px;
   border: 1px solid #333;
-  text-align: left;
   font-size: 13px;
   line-height: 1.5;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
   z-index: 10;
 }
 
+/* SHOW */
+.item:hover .tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* FLECHA */
 .tooltip::before {
   content: "";
   position: absolute;
@@ -94,14 +101,11 @@ body {
   border-color: transparent transparent #111 transparent;
 }
 
-.item.active .tooltip {
-  display: block;
-}
-
-/* MOBILE */
-@media(max-width: 768px){
-  .title {
-    font-size: 12px;
+/* MOBILE (tap) */
+@media (max-width: 768px) {
+  .item:active .tooltip {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 }
 </style>
@@ -112,8 +116,7 @@ body {
 <div class="section">
   <div class="row">
 
-    <!-- PAGOS -->
-    <div class="item" onclick="toggle(this)">
+    <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
           <rect x="2" y="5" width="20" height="14" rx="2"/>
@@ -122,19 +125,15 @@ body {
       </div>
       <div class="title">Formas de pago</div>
       <div class="tooltip">
-        Aceptamos Visa, MasterCard, AMEX, PayPal, Mercado Pago,
-        OXXO y transferencias SPEI.
+        Aceptamos Visa, MasterCard, AMEX, PayPal, Mercado Pago, OXXO y SPEI.
       </div>
     </div>
 
-    <!-- ENVÍOS -->
-    <div class="item" onclick="toggle(this)">
+    <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
           <rect x="1" y="7" width="15" height="10" rx="2"/>
           <path d="M16 10h4l2 3v4h-6z"/>
-          <circle cx="5" cy="19" r="2"/>
-          <circle cx="17" cy="19" r="2"/>
         </svg>
       </div>
       <div class="title">Tipos de envío</div>
@@ -143,12 +142,10 @@ body {
       </div>
     </div>
 
-    <!-- GARANTÍA -->
-    <div class="item" onclick="toggle(this)">
+    <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
           <path d="M3 12a9 9 0 1 0 3-6"/>
-          <polyline points="3 3 3 9 9 9"/>
         </svg>
       </div>
       <div class="title">Devuelve fácil</div>
@@ -157,12 +154,10 @@ body {
       </div>
     </div>
 
-    <!-- SEGURIDAD -->
-    <div class="item" onclick="toggle(this)">
+    <div class="item">
       <div class="icon">
         <svg viewBox="0 0 24 24">
           <rect x="3" y="11" width="18" height="10" rx="2"/>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
       </div>
       <div class="title">Pago seguro</div>
@@ -173,16 +168,6 @@ body {
 
   </div>
 </div>
-
-<script>
-function toggle(element) {
-  let items = document.querySelectorAll('.item');
-  items.forEach(item => {
-    if(item !== element) item.classList.remove('active');
-  });
-  element.classList.toggle('active');
-}
-</script>
 
 </body>
 </html>
