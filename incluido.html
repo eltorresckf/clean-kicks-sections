@@ -15,7 +15,8 @@
 
   .container {
     padding: 24px 18px;
-    max-width: 500px;
+    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
   }
 
@@ -52,10 +53,6 @@
   }
 
   @media (min-width: 768px) {
-    .container {
-      max-width: 800px;
-    }
-
     h2 {
       font-size: 26px;
     }
@@ -97,17 +94,6 @@
   </div>
 
 </div>
-
-<!-- AUTO HEIGHT SCRIPT -->
-<script>
-  function sendHeight() {
-    const height = document.body.scrollHeight;
-    window.parent.postMessage({ type: 'setHeight', height: height }, '*');
-  }
-
-  window.addEventListener('load', sendHeight);
-  window.addEventListener('resize', sendHeight);
-</script>
 
 </body>
 </html>
