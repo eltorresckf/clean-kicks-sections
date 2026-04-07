@@ -49,10 +49,14 @@
     transition: transform 0.3s ease;
   }
 
+  /* 🔥 ANIMACIÓN SUAVE */
   .faq-answer {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
     font-size: 14px;
     color: #ccc;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
   }
 
   .faq-answer p {
@@ -60,7 +64,8 @@
   }
 
   .faq-item.active .faq-answer {
-    display: block;
+    max-height: 200px; /* suficiente para tu contenido */
+    opacity: 1;
   }
 
   .faq-item.active .faq-question span {
@@ -168,15 +173,8 @@
     const button = item.querySelector('.faq-question');
 
     button.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-
-      items.forEach(i => i.classList.remove('active'));
-
-      if (!isActive) {
-        item.classList.add('active');
-      }
-
-      setTimeout(updateHeight, 200);
+      item.classList.toggle('active'); // 🔥 permite múltiples abiertos
+      setTimeout(updateHeight, 400);
     });
   });
 
