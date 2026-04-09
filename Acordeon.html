@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Info producto</title>
 
 <style>
   body {
@@ -16,24 +15,19 @@
   .container {
     max-width: 900px;
     margin: auto;
-    padding: 20px;
+    padding: 10px 20px;
   }
 
   .item {
     border-bottom: 1px solid rgba(255,255,255,0.08);
     cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  .item:hover {
-    background: rgba(255,255,255,0.02);
   }
 
   .header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
+    align-items: center;
+    padding: 18px 0;
   }
 
   .left {
@@ -46,7 +40,7 @@
     width: 22px;
     height: 22px;
     opacity: 0.85;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .item:hover .icon {
@@ -55,9 +49,8 @@
   }
 
   .title {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
-    letter-spacing: 0.2px;
   }
 
   .arrow {
@@ -73,12 +66,12 @@
   .content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .content-inner {
-    padding-bottom: 20px;
-    font-size: 15px;
+    padding-bottom: 18px;
+    font-size: 14.5px;
     line-height: 1.7;
     opacity: 0.75;
   }
@@ -94,7 +87,6 @@
   <div class="item">
     <div class="header">
       <div class="left">
-        <!-- BOX ICON -->
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
           <path d="M3 7l9-4 9 4-9 4-9-4z"/>
           <path d="M3 7v10l9 4 9-4V7"/>
@@ -108,7 +100,7 @@
         ✔ Cepillo premium de cerdas suaves<br>
         ✔ Solución limpiadora especializada<br>
         ✔ Toalla de microfibra<br>
-        ✔ Instrucciones paso a paso
+        ✔ Guía paso a paso
       </div>
     </div>
   </div>
@@ -117,7 +109,6 @@
   <div class="item">
     <div class="header">
       <div class="left">
-        <!-- CARD ICON -->
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
           <rect x="2" y="5" width="20" height="14" rx="2"/>
           <path d="M2 10h20"/>
@@ -128,8 +119,8 @@
     </div>
     <div class="content">
       <div class="content-inner">
-        Paga con tarjeta, PayPal o MercadoPago.  
-        Transacciones 100% seguras.
+        Tarjeta, PayPal y MercadoPago.<br>
+        Pagos protegidos y rápidos.
       </div>
     </div>
   </div>
@@ -138,7 +129,6 @@
   <div class="item">
     <div class="header">
       <div class="left">
-        <!-- TRUCK ICON -->
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
           <rect x="1" y="3" width="15" height="13"/>
           <path d="M16 8h4l3 3v5h-7z"/>
@@ -151,8 +141,8 @@
     </div>
     <div class="content">
       <div class="content-inner">
-        Envíos a todo México en 2 a 5 días hábiles.  
-        Si algo no sale bien, lo solucionamos contigo.
+        Envíos a todo México en 2–5 días hábiles.<br>
+        Si algo falla, lo resolvemos contigo.
       </div>
     </div>
   </div>
@@ -161,7 +151,6 @@
   <div class="item">
     <div class="header">
       <div class="left">
-        <!-- STAR ICON -->
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
           <path d="M12 3l3 6 6 .9-4.5 4.4 1 6.2L12 17l-5.5 3.5 1-6.2L3 9.9l6-.9z"/>
         </svg>
@@ -171,7 +160,7 @@
     </div>
     <div class="content">
       <div class="content-inner">
-        Si no te convence, te devolvemos tu dinero.  
+        Si no te convence, te devolvemos tu dinero.<br>
         Compra sin riesgo.
       </div>
     </div>
@@ -182,6 +171,11 @@
 <script>
   const items = document.querySelectorAll(".item");
 
+  function updateHeight() {
+    const height = document.body.scrollHeight;
+    window.parent.postMessage({ type: "resize", height: height }, "*");
+  }
+
   items.forEach(item => {
     item.addEventListener("click", () => {
       const content = item.querySelector(".content");
@@ -190,16 +184,15 @@
         content.style.maxHeight = null;
         item.classList.remove("active");
       } else {
-        items.forEach(i => {
-          i.classList.remove("active");
-          i.querySelector(".content").style.maxHeight = null;
-        });
-
         item.classList.add("active");
         content.style.maxHeight = content.scrollHeight + "px";
       }
+
+      setTimeout(updateHeight, 400);
     });
   });
+
+  window.addEventListener("load", updateHeight);
 </script>
 
 </body>
