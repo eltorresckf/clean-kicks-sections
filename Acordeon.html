@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Info producto</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .item {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .item:hover {
+    background: rgba(255,255,255,0.02);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+    opacity: 0.85;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .item:hover .icon {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+
+  .arrow {
+    transition: transform 0.35s ease;
+    opacity: 0.6;
+  }
+
+  .item.active .arrow {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .content-inner {
+    padding-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.75;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- QUE INCLUYE -->
+  <div class="item">
+    <div class="header">
+      <div class="left">
+        <!-- BOX ICON -->
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <path d="M3 7l9-4 9 4-9 4-9-4z"/>
+          <path d="M3 7v10l9 4 9-4V7"/>
+        </svg>
+        <div class="title">¿Qué incluye?</div>
+      </div>
+      <div class="arrow">⌄</div>
+    </div>
+    <div class="content">
+      <div class="content-inner">
+        ✔ Cepillo premium de cerdas suaves<br>
+        ✔ Solución limpiadora especializada<br>
+        ✔ Toalla de microfibra<br>
+        ✔ Instrucciones paso a paso
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGOS -->
+  <div class="item">
+    <div class="header">
+      <div class="left">
+        <!-- CARD ICON -->
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <rect x="2" y="5" width="20" height="14" rx="2"/>
+          <path d="M2 10h20"/>
+        </svg>
+        <div class="title">Métodos de pago</div>
+      </div>
+      <div class="arrow">⌄</div>
+    </div>
+    <div class="content">
+      <div class="content-inner">
+        Paga con tarjeta, PayPal o MercadoPago.  
+        Transacciones 100% seguras.
+      </div>
+    </div>
+  </div>
+
+  <!-- ENVIOS -->
+  <div class="item">
+    <div class="header">
+      <div class="left">
+        <!-- TRUCK ICON -->
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <rect x="1" y="3" width="15" height="13"/>
+          <path d="M16 8h4l3 3v5h-7z"/>
+          <circle cx="5.5" cy="18.5" r="1.5"/>
+          <circle cx="18.5" cy="18.5" r="1.5"/>
+        </svg>
+        <div class="title">Envíos y devoluciones</div>
+      </div>
+      <div class="arrow">⌄</div>
+    </div>
+    <div class="content">
+      <div class="content-inner">
+        Envíos a todo México en 2 a 5 días hábiles.  
+        Si algo no sale bien, lo solucionamos contigo.
+      </div>
+    </div>
+  </div>
+
+  <!-- GARANTIA -->
+  <div class="item">
+    <div class="header">
+      <div class="left">
+        <!-- STAR ICON -->
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <path d="M12 3l3 6 6 .9-4.5 4.4 1 6.2L12 17l-5.5 3.5 1-6.2L3 9.9l6-.9z"/>
+        </svg>
+        <div class="title">Garantía</div>
+      </div>
+      <div class="arrow">⌄</div>
+    </div>
+    <div class="content">
+      <div class="content-inner">
+        Si no te convence, te devolvemos tu dinero.  
+        Compra sin riesgo.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const items = document.querySelectorAll(".item");
+
+  items.forEach(item => {
+    item.addEventListener("click", () => {
+      const content = item.querySelector(".content");
+
+      if (item.classList.contains("active")) {
+        content.style.maxHeight = null;
+        item.classList.remove("active");
+      } else {
+        items.forEach(i => {
+          i.classList.remove("active");
+          i.querySelector(".content").style.maxHeight = null;
+        });
+
+        item.classList.add("active");
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
