@@ -97,13 +97,25 @@ body {
 <!-- 🔥 SCRIPT AUTO ALTURA (IMPORTANTE PARA IFRAME) -->
 <script>
 function sendHeight() {
-  const height = document.body.scrollHeight;
+  const height = document.documentElement.scrollHeight;
   window.parent.postMessage({ height: height }, "*");
 }
 
-window.onload = sendHeight;
-window.onresize = sendHeight;
-</script>
+// Al cargar
+window.addEventListener("load", sendHeight);
 
-</body>
-</html>
+// Cuando el usuario interactúa
+document.addEventListener("click", () => {
+  setTimeout(sendHeight, 100);
+});
+
+// Detectar cambios dinámicos
+const observer = new MutationObserver(() => {
+  sendHeight();
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
+</script>
