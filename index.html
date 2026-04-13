@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body {
+html, body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
   background: transparent;
+  font-family: Arial, sans-serif;
 }
 /* 🔥 BASE GLOBAL CKF */
 .ckf-wrapper {
@@ -79,13 +80,10 @@ function sendHeight() {
   const height = document.querySelector('.card').getBoundingClientRect().height + 32;
   window.parent.postMessage({ height: Math.ceil(height) }, "*");
 }
-// Al cargar
 window.addEventListener("load", sendHeight);
-// Cuando el usuario interactúa
 document.addEventListener("click", () => {
   setTimeout(sendHeight, 100);
 });
-// Detectar cambios dinámicos
 const observer = new MutationObserver(() => {
   sendHeight();
 });
