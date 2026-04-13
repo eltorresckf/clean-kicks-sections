@@ -3,25 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: transparent;
 }
-
 /* 🔥 BASE GLOBAL CKF */
 .ckf-wrapper {
   width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
 }
-
 .ckf-container {
   width: 100%;
 }
-
 /* SOLO DESKTOP */
 @media (min-width: 1024px) {
   .ckf-container {
@@ -29,16 +25,13 @@ body {
     margin: 0 auto;
   }
 }
-
 /* ===== DISEÑO ===== */
-
 .card {
   background: #181818;
   border-radius: 16px;
   padding: 20px;
   border: 1px solid rgba(255,255,255,0.06);
 }
-
 .item {
   display: flex;
   align-items: center;
@@ -46,76 +39,60 @@ body {
   font-size: 14px;
   color: #f5f5f5;
 }
-
 .item:not(:last-child) {
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-
 .icon {
   margin-right: 14px;
   font-size: 18px;
 }
-
 .text {
   letter-spacing: 0.2px;
 }
 </style>
 </head>
-
 <body>
-
 <div class="ckf-wrapper">
   <div class="ckf-container">
-
     <div class="card">
-
       <div class="item">
         <span class="icon">🧼</span>
         <span class="text">Resultados visibles desde la primera limpieza</span>
       </div>
-
       <div class="item">
         <span class="icon">👟</span>
         <span class="text">Ideal para todo tipo de sneakers</span>
       </div>
-
       <div class="item">
         <span class="icon">🚚</span>
         <span class="text">Envíos a todo México</span>
       </div>
-
       <div class="item">
         <span class="icon">🔒</span>
         <span class="text">Compra 100% segura</span>
       </div>
-
     </div>
-
   </div>
 </div>
-
-<!-- 🔥 SCRIPT AUTO ALTURA (IMPORTANTE PARA IFRAME) -->
 <script>
 function sendHeight() {
-  const height = document.documentElement.scrollHeight;
-  window.parent.postMessage({ height: height }, "*");
+  const height = document.querySelector('.ckf-wrapper').getBoundingClientRect().height;
+  window.parent.postMessage({ height: Math.ceil(height) }, "*");
 }
-
 // Al cargar
 window.addEventListener("load", sendHeight);
-
 // Cuando el usuario interactúa
 document.addEventListener("click", () => {
   setTimeout(sendHeight, 100);
 });
-
 // Detectar cambios dinámicos
 const observer = new MutationObserver(() => {
   sendHeight();
 });
-
 observer.observe(document.body, {
   childList: true,
   subtree: true
 });
 </script>
+</body>
+</html>
