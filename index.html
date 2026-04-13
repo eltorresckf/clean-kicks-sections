@@ -77,20 +77,16 @@ html, body {
 </div>
 <script>
 function sendHeight() {
-  const height = document.querySelector('.card').getBoundingClientRect().height + 32;
-  window.parent.postMessage({ height: Math.ceil(height) }, "*");
+  const card = document.querySelector('.card');
+  const rect = card.getBoundingClientRect();
+  const total = rect.height + 32;
+  window.parent.postMessage({ height: Math.ceil(total) }, "*");
 }
+
 window.addEventListener("load", sendHeight);
-document.addEventListener("click", () => {
-  setTimeout(sendHeight, 100);
-});
-const observer = new MutationObserver(() => {
-  sendHeight();
-});
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
+setTimeout(sendHeight, 100);
+setTimeout(sendHeight, 500);
+setTimeout(sendHeight, 1000);
 </script>
 </body>
 </html>
