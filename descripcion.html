@@ -230,12 +230,13 @@ function showTab(index) {
   });
 
   updateIndicator(tabs[index]);
+  sendHeight();
 }
 
 /* 🔥 ALTURA DINÁMICA */
 function sendHeight() {
-  const height = document.body.scrollHeight;
-  window.parent.postMessage({ height: height }, "*");
+  const height = document.querySelector('.ckf-wrapper').getBoundingClientRect().height;
+  window.parent.postMessage({ height: Math.ceil(height) }, "*");
 }
 
 window.onload = () => {
