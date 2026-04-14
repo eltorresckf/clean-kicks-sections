@@ -50,8 +50,6 @@ html, body {
   border-bottom: 1px solid #222;
   margin-bottom: 30px;
   position: relative;
-
-  /* 🔥 FIX SCROLL */
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -85,8 +83,6 @@ html, body {
   height: 2px;
   background: #fff;
   transition: all 0.3s ease;
-
-  /* 🔥 FIX */
   max-width: 100%;
 }
 
@@ -141,7 +137,7 @@ p {
   font-size: 12px;
 }
 
-/* 🔥 MOBILE OPTIMIZADO */
+/* 🔥 MOBILE */
 @media (max-width: 600px) {
   .tabs {
     gap: 16px;
@@ -223,6 +219,20 @@ function updateIndicator(el) {
   indicator.style.left = el.offsetLeft + 'px';
 }
 
+/* 🔥 AUTO-HEIGHT PRO (sin hacks) */
+function sendHeight() {
+  const height = document.querySelector('.ckf-wrapper').getBoundingClientRect().height;
+  window.parent.postMessage({ height: Math.ceil(height) }, "*");
+}
+
+/* 🔥 ResizeObserver = nivel PRO */
+const observer = new ResizeObserver(() => {
+  sendHeight();
+});
+
+observer.observe(document.body);
+
+/* Tabs */
 function showTab(index) {
   tabs.forEach((tab, i) => {
     tab.classList.toggle('active', i === index);
@@ -230,21 +240,13 @@ function showTab(index) {
   });
 
   updateIndicator(tabs[index]);
-  sendHeight();
 }
 
-/* 🔥 ALTURA DINÁMICA */
-function sendHeight() {
-  const height = document.querySelector('.ckf-wrapper').getBoundingClientRect().height;
-  window.parent.postMessage({ height: Math.ceil(height) }, "*");
-}
-
+/* Load */
 window.onload = () => {
   updateIndicator(document.querySelector('.tab.active'));
   sendHeight();
 };
-
-window.onresize = sendHeight;
 </script>
 
 </body>
