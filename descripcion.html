@@ -9,6 +9,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  overflow-y: hidden; /* 🔥 evita scroll interno */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: transparent;
   color: #fff;
@@ -19,7 +20,6 @@ html, body {
   width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 .ckf-container {
@@ -219,9 +219,9 @@ function updateIndicator(el) {
   indicator.style.left = el.offsetLeft + 'px';
 }
 
-/* 🔥 ALTURA ESTABLE */
+/* 🔥 ALTURA PERFECTA */
 function sendHeight() {
-  const height = document.querySelector('.ckf-wrapper').scrollHeight + 4;
+  const height = document.body.scrollHeight;
 
   window.parent.postMessage({
     type: "resize",
@@ -239,14 +239,12 @@ function showTab(index) {
 
   updateIndicator(tabs[index]);
 
-  // 🔥 esperar animación
   setTimeout(sendHeight, 450);
 }
 
 /* Load */
 window.onload = () => {
   updateIndicator(document.querySelector('.tab.active'));
-
   setTimeout(sendHeight, 300);
 };
 
@@ -255,3 +253,6 @@ window.addEventListener("resize", () => {
   setTimeout(sendHeight, 200);
 });
 </script>
+
+</body>
+</html>
