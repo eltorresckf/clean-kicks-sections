@@ -10,15 +10,18 @@ html, body {
   background: transparent;
   font-family: Arial, sans-serif;
 }
+
 /* 🔥 BASE GLOBAL CKF */
 .ckf-wrapper {
   width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
 }
+
 .ckf-container {
   width: 100%;
 }
+
 /* SOLO DESKTOP */
 @media (min-width: 1024px) {
   .ckf-container {
@@ -26,6 +29,7 @@ html, body {
     margin: 0 auto;
   }
 }
+
 /* ===== DISEÑO ===== */
 .card {
   background: #181818;
@@ -33,6 +37,7 @@ html, body {
   padding: 20px;
   border: 1px solid rgba(255,255,255,0.06);
 }
+
 .item {
   display: flex;
   align-items: center;
@@ -40,53 +45,64 @@ html, body {
   font-size: 14px;
   color: #f5f5f5;
 }
+
 .item:not(:last-child) {
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
+
 .icon {
   margin-right: 14px;
   font-size: 18px;
 }
+
 .text {
   letter-spacing: 0.2px;
 }
 </style>
 </head>
+
 <body>
 <div class="ckf-wrapper">
   <div class="ckf-container">
     <div class="card">
+      
       <div class="item">
         <span class="icon">🧼</span>
         <span class="text">Resultados visibles desde la primera limpieza</span>
       </div>
+
       <div class="item">
         <span class="icon">👟</span>
         <span class="text">Ideal para todo tipo de sneakers</span>
       </div>
+
       <div class="item">
         <span class="icon">🚚</span>
         <span class="text">Envíos a todo México</span>
       </div>
+
       <div class="item">
         <span class="icon">🔒</span>
         <span class="text">Compra 100% segura</span>
       </div>
+
     </div>
   </div>
 </div>
+
 <script>
 function sendHeight() {
   const card = document.querySelector('.card');
   const rect = card.getBoundingClientRect();
-  const total = rect.height + 32;
+  const total = rect.height; // 🔥 SIN espacio extra
   window.parent.postMessage({ height: Math.ceil(total) }, "*");
 }
 
 window.addEventListener("load", sendHeight);
 setTimeout(sendHeight, 100);
-setTimeout(sendHeight, 500);
-setTimeout(sendHeight, 1000);
+setTimeout(sendHeight, 300);
+setTimeout(sendHeight, 600);
 </script>
+
 </body>
 </html>
