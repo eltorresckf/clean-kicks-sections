@@ -105,51 +105,83 @@ body {
     De esto… a esto en minutos. Resultados reales.
   </div>
 </div>
+
 <script>
 const slider = document.getElementById('slider');
 const after = document.getElementById('after');
 const divider = document.getElementById('divider');
+
 let isDragging = false;
-// MOUSE
-divider.addEventListener('mousedown', () => isDragging = true);
+let autoMove = true;
+let direction = 1;
+let current = 50;
+
+// Detectar si es mobile
+const isMobile = window.innerWidth <= 768;
+
+// MOUSE DRAG (se mantiene)
+divider.addEventListener('mousedown', () => {
+  isDragging = true;
+  autoMove = false;
+});
+
 window.addEventListener('mouseup', () => isDragging = false);
+
 window.addEventListener('mousemove', (e) => {
   if (!isDragging) return;
   moveSlider(e.clientX);
 });
-// TOUCH
-slider.addEventListener('touchstart', () => isDragging = true);
+
+// 🔥 NUEVO: HOVER EN DESKTOP (SIN CLICK)
+if (!isMobile) {
+  slider.addEventListener('mousemove', (e) => {
+    autoMove = false;
+    moveSlider(e.clientX);
+  });
+}
+
+// TOUCH (mobile)
+slider.addEventListener('touchstart', () => {
+  isDragging = true;
+  autoMove = false;
+});
+
 window.addEventListener('touchend', () => isDragging = false);
+
 window.addEventListener('touchmove', (e) => {
   if (!isDragging) return;
   moveSlider(e.touches[0].clientX);
 });
+
+// FUNCIÓN PRINCIPAL
 function moveSlider(clientX) {
   const rect = slider.getBoundingClientRect();
   let x = clientX - rect.left;
+
   if (x < 0) x = 0;
   if (x > rect.width) x = rect.width;
+
   const percent = (x / rect.width) * 100;
+
   after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
   divider.style.left = percent + "%";
 }
+
 // ANIMACIÓN AUTOMÁTICA
-let autoMove = true;
-let direction = 1;
-let current = 50;
 function animate() {
   if (!autoMove) return;
+
   current += direction * 0.2;
+
   if (current >= 80) direction = -1;
   if (current <= 20) direction = 1;
+
   after.style.clipPath = `inset(0 ${100 - current}% 0 0)`;
   divider.style.left = current + "%";
+
   requestAnimationFrame(animate);
 }
 animate();
-// DETENER ANIMACIÓN
-divider.addEventListener('mousedown', () => autoMove = false);
-slider.addEventListener('touchstart', () => autoMove = false);
 
 /* ALTURA DINÁMICA - SOLO DESKTOP */
 function sendHeight() {
@@ -164,5 +196,6 @@ function sendHeight() {
 window.addEventListener("load", sendHeight);
 window.addEventListener("resize", sendHeight);
 </script>
+
 </body>
 </html>
