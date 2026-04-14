@@ -3,40 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   background: #000;
   color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
-
-/* CONTENEDOR */
 .container {
   padding: 28px 16px;
 }
-
-/* TITULO */
 h2 {
   text-align: center;
   font-size: 22px;
   margin-bottom: 26px;
   letter-spacing: 0.3px;
 }
-
-/* GRID */
 .grid {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-
-/* CARD */
 .card {
   background: #0d0d0d;
   border-radius: 16px;
@@ -45,12 +35,8 @@ h2 {
   align-items: flex-start;
   gap: 14px;
   border: 1px solid rgba(205,147,65,0.12);
-
-  /* animación inicial */
   opacity: 0;
   transform: translateY(20px);
-
-  /* transiciones */
   transition: 
     transform 0.15s ease,
     background 0.2s ease,
@@ -58,27 +44,19 @@ h2 {
     box-shadow 0.2s ease,
     opacity 0.5s ease;
 }
-
-/* ENTRADA */
 .card.show {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* HOVER (desktop) */
 .card:hover {
   border: 1px solid rgba(205,147,65,0.35);
   box-shadow: 0 0 12px rgba(205,147,65,0.08);
 }
-
-/* TAP FEEDBACK (mobile) */
 .card:active {
   transform: scale(0.97);
   background: #121212;
   border: 1px solid rgba(205,147,65,0.4);
 }
-
-/* ICONO */
 .icon {
   min-width: 44px;
   height: 44px;
@@ -87,71 +65,51 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-
   transition: all 0.2s ease;
 }
-
-/* HOVER ICON */
 .card:hover .icon {
   transform: scale(1.08);
   background: rgba(205,147,65,0.15);
 }
-
-/* TAP ICON */
 .card:active .icon {
   transform: scale(0.95);
   background: rgba(205,147,65,0.2);
 }
-
-/* SVG */
 .icon svg {
   width: 20px;
   height: 20px;
   stroke: #cd9341;
 }
-
-/* TEXTO */
 .title {
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 4px;
 }
-
 .text {
   font-size: 13.5px;
   color: #bfbfbf;
   line-height: 1.4;
 }
-
-/* DESC */
 .desc {
   margin-top: 22px;
   text-align: center;
   font-size: 14px;
   color: #9a9a9a;
 }
-
-/* DESKTOP */
 @media (min-width: 768px) {
   .grid {
     flex-direction: row;
   }
-
   .card {
     flex: 1;
   }
 }
 </style>
 </head>
-
 <body>
-
 <div class="container">
-
   <h2>¿Qué incluye tu kit?</h2>
-
   <div class="grid">
-
     <div class="card">
       <div class="icon">
         <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24">
@@ -163,7 +121,6 @@ h2 {
         <div class="text">Remueve suciedad sin dañar materiales delicados</div>
       </div>
     </div>
-
     <div class="card">
       <div class="icon">
         <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24">
@@ -175,7 +132,6 @@ h2 {
         <div class="text">Limpieza profunda para todo tipo de sneakers</div>
       </div>
     </div>
-
     <div class="card">
       <div class="icon">
         <svg fill="none" stroke-width="1.8" viewBox="0 0 24 24">
@@ -187,19 +143,14 @@ h2 {
         <div class="text">Absorbe y deja un acabado limpio sin residuos</div>
       </div>
     </div>
-
   </div>
-
   <div class="desc">
     Todo lo necesario para dejar tus sneakers como nuevos.
   </div>
-
 </div>
-
 <script>
 /* ANIMACIÓN AL HACER SCROLL */
 const cards = document.querySelectorAll('.card');
-
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -209,9 +160,20 @@ const observer = new IntersectionObserver(entries => {
 }, {
   threshold: 0.2
 });
-
 cards.forEach(card => observer.observe(card));
-</script>
 
+/* ALTURA DINÁMICA - SOLO DESKTOP */
+function sendHeight() {
+  if (window.innerWidth > 768) {
+    window.parent.postMessage({
+      type: "resize",
+      id: "incluido",
+      height: document.body.scrollHeight
+    }, "*");
+  }
+}
+window.addEventListener("load", sendHeight);
+window.addEventListener("resize", sendHeight);
+</script>
 </body>
 </html>
