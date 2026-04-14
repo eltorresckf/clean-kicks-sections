@@ -209,6 +209,8 @@ p {
   </div>
 </div>
 
+<!-- SOLO TE PONGO SCRIPT NUEVO (el resto déjalo igual que ya tienes) -->
+
 <script>
 const tabs = document.querySelectorAll('.tab');
 const contents = document.querySelectorAll('.tab-content');
@@ -219,20 +221,19 @@ function updateIndicator(el) {
   indicator.style.left = el.offsetLeft + 'px';
 }
 
-/* 🔥 AUTO-HEIGHT PRO (sin hacks) */
 function sendHeight() {
-  const height = document.querySelector('.ckf-wrapper').scrollHeight + 2;
-  window.parent.postMessage({ height: Math.ceil(height) }, "*");
+  const height = document.querySelector('.ckf-wrapper').scrollHeight;
+
+  window.parent.postMessage({
+    type: "resize",
+    id: "descripcion",
+    height: height
+  }, "*");
 }
 
-/* 🔥 ResizeObserver = nivel PRO */
-const observer = new ResizeObserver(() => {
-  sendHeight();
-});
-
+const observer = new ResizeObserver(sendHeight);
 observer.observe(document.body);
 
-/* Tabs */
 function showTab(index) {
   tabs.forEach((tab, i) => {
     tab.classList.toggle('active', i === index);
@@ -242,12 +243,8 @@ function showTab(index) {
   updateIndicator(tabs[index]);
 }
 
-/* Load */
 window.onload = () => {
   updateIndicator(document.querySelector('.tab.active'));
   sendHeight();
 };
 </script>
-
-</body>
-</html>
