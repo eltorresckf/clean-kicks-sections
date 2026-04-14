@@ -160,65 +160,27 @@
   </div>
 
 </div>
+
 <script>
-function sendHeight() {
-  const height = document.body.scrollHeight;
+  const items = document.querySelectorAll('.faq-item');
 
-  window.parent.postMessage({
-    type: "resize",
-    id: "faq",
-    height: height
-  }, "*");
-}
+  function updateHeight() {
+    const height = document.body.scrollHeight;
+    parent.postMessage({ type: "resize", height: height }, "*");
+  }
 
-/* 🔥 AJUSTE INTELIGENTE SIN ROMPER EVENTOS */
-function adjustHeight() {
-  setTimeout(sendHeight, 200);
-  setTimeout(sendHeight, 500);
-}
+  items.forEach(item => {
+    const button = item.querySelector('.faq-question');
 
-/* 🔥 Detectar cambios en el DOM (cuando abre/cierra FAQ) */
-const observer = new MutationObserver(() => {
-  adjustHeight();
-});
+    button.addEventListener('click', () => {
+      item.classList.toggle('active'); // 🔥 permite múltiples abiertos
+      setTimeout(updateHeight, 400);
+    });
+  });
 
-observer.observe(document.body, {
-  childList: true,
-  subtree: true,
-  attributes: true
-});
-
-/* Load */
-window.onload = () => {
-  adjustHeight();
-};
-
-/* Resize */
-window.addEventListener("resize", adjustHeight);
+  window.addEventListener("load", updateHeight);
+  window.addEventListener("resize", updateHeight);
 </script>
-<script>
-function sendHeight() {
-  const height = document.body.scrollHeight;
 
-  window.parent.postMessage({
-    type: "resize",
-    id: "faq",
-    height: height
-  }, "*");
-}
-
-/* 🔥 Ajuste después de interacción */
-function adjustHeight() {
-  setTimeout(sendHeight, 200);
-  setTimeout(sendHeight, 500);
-}
-
-/* 🔥 Hook SIN romper el FAQ */
-setInterval(sendHeight, 1000);
-
-/* Load */
-window.addEventListener("load", adjustHeight);
-
-/* Resize */
-window.addEventListener("resize", adjustHeight);
-</script>
+</body>
+</html>
