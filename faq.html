@@ -160,27 +160,19 @@
   </div>
 
 </div>
-
 <script>
-  const items = document.querySelectorAll('.faq-item');
+function sendHeight() {
+  const height = document.body.scrollHeight;
 
-  function updateHeight() {
-    const height = document.body.scrollHeight;
-    parent.postMessage({ type: "resize", height: height }, "*");
-  }
+  window.parent.postMessage({
+    type: "resize",
+    id: "faq",
+    height: height
+  }, "*");
+}
 
-  items.forEach(item => {
-    const button = item.querySelector('.faq-question');
+const observer = new ResizeObserver(sendHeight);
+observer.observe(document.body);
 
-    button.addEventListener('click', () => {
-      item.classList.toggle('active'); // 🔥 permite múltiples abiertos
-      setTimeout(updateHeight, 400);
-    });
-  });
-
-  window.addEventListener("load", updateHeight);
-  window.addEventListener("resize", updateHeight);
+window.onload = sendHeight;
 </script>
-
-</body>
-</html>
