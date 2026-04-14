@@ -196,3 +196,29 @@ window.onload = () => {
 /* Resize */
 window.addEventListener("resize", adjustHeight);
 </script>
+<script>
+function sendHeight() {
+  const height = document.body.scrollHeight;
+
+  window.parent.postMessage({
+    type: "resize",
+    id: "faq",
+    height: height
+  }, "*");
+}
+
+/* 🔥 Ajuste después de interacción */
+function adjustHeight() {
+  setTimeout(sendHeight, 200);
+  setTimeout(sendHeight, 500);
+}
+
+/* 🔥 Hook SIN romper el FAQ */
+setInterval(sendHeight, 1000);
+
+/* Load */
+window.addEventListener("load", adjustHeight);
+
+/* Resize */
+window.addEventListener("resize", adjustHeight);
+</script>
