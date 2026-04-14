@@ -11,7 +11,6 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-/* 🔥 BASE GLOBAL CKF */
 .ckf-wrapper {
   width: 100%;
   padding: 0 16px;
@@ -22,7 +21,6 @@ html, body {
   width: 100%;
 }
 
-/* SOLO DESKTOP */
 @media (min-width: 1024px) {
   .ckf-container {
     max-width: 1100px;
@@ -30,7 +28,6 @@ html, body {
   }
 }
 
-/* ===== DISEÑO ===== */
 .card {
   background: #181818;
   border-radius: 16px;
@@ -52,11 +49,6 @@ html, body {
 
 .icon {
   margin-right: 14px;
-  font-size: 18px;
-}
-
-.text {
-  letter-spacing: 0.2px;
 }
 </style>
 </head>
@@ -65,43 +57,29 @@ html, body {
 <div class="ckf-wrapper">
   <div class="ckf-container">
     <div class="card">
-      
-      <div class="item">
-        <span class="icon">🧼</span>
-        <span class="text">Resultados visibles desde la primera limpieza</span>
-      </div>
-
-      <div class="item">
-        <span class="icon">👟</span>
-        <span class="text">Ideal para todo tipo de sneakers</span>
-      </div>
-
-      <div class="item">
-        <span class="icon">🚚</span>
-        <span class="text">Envíos a todo México</span>
-      </div>
-
-      <div class="item">
-        <span class="icon">🔒</span>
-        <span class="text">Compra 100% segura</span>
-      </div>
-
+      <div class="item">🧼 Resultados visibles desde la primera limpieza</div>
+      <div class="item">👟 Ideal para todo tipo de sneakers</div>
+      <div class="item">🚚 Envíos a todo México</div>
+      <div class="item">🔒 Compra 100% segura</div>
     </div>
   </div>
 </div>
 
 <script>
 function sendHeight() {
-  const card = document.querySelector('.card');
-  const rect = card.getBoundingClientRect();
-  const total = rect.height; // 🔥 SIN espacio extra
-  window.parent.postMessage({ height: Math.ceil(total) }, "*");
+  const height = document.querySelector('.ckf-wrapper').scrollHeight;
+
+  window.parent.postMessage({
+    type: "resize",
+    id: "index",
+    height: height
+  }, "*");
 }
 
 window.addEventListener("load", sendHeight);
-setTimeout(sendHeight, 100);
-setTimeout(sendHeight, 300);
-setTimeout(sendHeight, 600);
+
+const observer = new ResizeObserver(sendHeight);
+observer.observe(document.body);
 </script>
 
 </body>
