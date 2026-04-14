@@ -162,7 +162,7 @@
 </div>
 <script>
 function sendHeight() {
-  const height = document.body.scrollHeight + 6;
+  const height = document.body.scrollHeight;
 
   window.parent.postMessage({
     type: "resize",
@@ -171,18 +171,28 @@ function sendHeight() {
   }, "*");
 }
 
-/* 🔥 Detectar clicks en preguntas */
-document.addEventListener("click", function() {
-  setTimeout(sendHeight, 400);
+/* 🔥 AJUSTE INTELIGENTE SIN ROMPER EVENTOS */
+function adjustHeight() {
+  setTimeout(sendHeight, 200);
+  setTimeout(sendHeight, 500);
+}
+
+/* 🔥 Detectar cambios en el DOM (cuando abre/cierra FAQ) */
+const observer = new MutationObserver(() => {
+  adjustHeight();
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+  attributes: true
 });
 
 /* Load */
 window.onload = () => {
-  setTimeout(sendHeight, 300);
+  adjustHeight();
 };
 
 /* Resize */
-window.addEventListener("resize", () => {
-  setTimeout(sendHeight, 200);
-});
+window.addEventListener("resize", adjustHeight);
 </script>
