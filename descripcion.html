@@ -209,8 +209,6 @@ p {
   </div>
 </div>
 
-<!-- SOLO TE PONGO SCRIPT NUEVO (el resto déjalo igual que ya tienes) -->
-
 <script>
 const tabs = document.querySelectorAll('.tab');
 const contents = document.querySelectorAll('.tab-content');
@@ -221,8 +219,9 @@ function updateIndicator(el) {
   indicator.style.left = el.offsetLeft + 'px';
 }
 
+/* 🔥 ALTURA ESTABLE */
 function sendHeight() {
-  const height = document.querySelector('.ckf-wrapper').scrollHeight;
+  const height = document.querySelector('.ckf-wrapper').scrollHeight + 4;
 
   window.parent.postMessage({
     type: "resize",
@@ -231,9 +230,7 @@ function sendHeight() {
   }, "*");
 }
 
-const observer = new ResizeObserver(sendHeight);
-observer.observe(document.body);
-
+/* Tabs */
 function showTab(index) {
   tabs.forEach((tab, i) => {
     tab.classList.toggle('active', i === index);
@@ -241,10 +238,20 @@ function showTab(index) {
   });
 
   updateIndicator(tabs[index]);
+
+  // 🔥 esperar animación
+  setTimeout(sendHeight, 450);
 }
 
+/* Load */
 window.onload = () => {
   updateIndicator(document.querySelector('.tab.active'));
-  sendHeight();
+
+  setTimeout(sendHeight, 300);
 };
+
+/* Resize */
+window.addEventListener("resize", () => {
+  setTimeout(sendHeight, 200);
+});
 </script>
