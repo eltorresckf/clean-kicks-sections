@@ -49,7 +49,6 @@
     transition: transform 0.3s ease;
   }
 
-  /* 🔥 ANIMACIÓN SUAVE */
   .faq-answer {
     max-height: 0;
     overflow: hidden;
@@ -64,7 +63,7 @@
   }
 
   .faq-item.active .faq-answer {
-    max-height: 200px; /* suficiente para tu contenido */
+    max-height: 200px;
     opacity: 1;
   }
 
@@ -166,14 +165,14 @@
 
   function updateHeight() {
     const height = document.body.scrollHeight;
-    parent.postMessage({ type: "resize", height: height }, "*");
+    parent.postMessage({ type: "resize", id: "faq", height: height }, "*"); // ← único cambio
   }
 
   items.forEach(item => {
     const button = item.querySelector('.faq-question');
 
     button.addEventListener('click', () => {
-      item.classList.toggle('active'); // 🔥 permite múltiples abiertos
+      item.classList.toggle('active');
       setTimeout(updateHeight, 400);
     });
   });
