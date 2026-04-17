@@ -28,7 +28,7 @@ body {
 .slider {
   display: flex;
   gap: 12px;
-  overflow-x: auto; /* 👈 vuelve el swipe */
+  overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
@@ -39,10 +39,10 @@ body {
 
 .card {
   flex: 0 0 calc(50% - 6px);
+  min-width: calc(50% - 6px); /* 👈 CLAVE */
   background: #111;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
 .image {
@@ -72,12 +72,12 @@ body {
 .text {
   color: #ccc;
   font-size: 13px;
-  line-height: 1.3;
 }
 
 @media (min-width: 768px) {
   .card {
     flex: 0 0 260px;
+    min-width: 260px;
   }
 }
 </style>
@@ -90,13 +90,18 @@ body {
 
   <div class="slider" id="slider">
 
-    <!-- 6 REVIEWS -->
-    <div class="card">...</div>
-    <div class="card">...</div>
-    <div class="card">...</div>
-    <div class="card">...</div>
-    <div class="card">...</div>
-    <div class="card">...</div>
+    <!-- 6 CARDS -->
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Rosa G.</div><div class="text">Quedaron como nuevos</div></div></div>
+
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Carlos A.</div><div class="text">Mejor que la lavadora</div></div></div>
+
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Luis M.</div><div class="text">Sí blanquea</div></div></div>
+
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Diego R.</div><div class="text">10 minutos y listos</div></div></div>
+
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Javier M.</div><div class="text">Sí funciona</div></div></div>
+
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Alex P.</div><div class="text">No los daña</div></div></div>
 
   </div>
 </div>
@@ -104,15 +109,15 @@ body {
 <script>
 const slider = document.getElementById('slider');
 
-// duplicar para loop infinito
-slider.innerHTML += slider.innerHTML;
+// CLONAR SOLO UNA VEZ
+const cards = slider.innerHTML;
+slider.innerHTML += cards;
 
 let speed = 0.3;
-let isUserInteracting = false;
+let isInteracting = false;
 
-// autoplay
 function autoScroll() {
-  if (!isUserInteracting) {
+  if (!isInteracting) {
     slider.scrollLeft += speed;
 
     if (slider.scrollLeft >= slider.scrollWidth / 2) {
@@ -124,16 +129,16 @@ function autoScroll() {
 
 autoScroll();
 
-// detectar interacción del usuario
-slider.addEventListener('touchstart', () => isUserInteracting = true);
-slider.addEventListener('mousedown', () => isUserInteracting = true);
+// interacción usuario
+slider.addEventListener('touchstart', () => isInteracting = true);
+slider.addEventListener('mousedown', () => isInteracting = true);
 
 slider.addEventListener('touchend', () => {
-  setTimeout(() => isUserInteracting = false, 1500);
+  setTimeout(() => isInteracting = false, 1200);
 });
 
 slider.addEventListener('mouseup', () => {
-  setTimeout(() => isUserInteracting = false, 1500);
+  setTimeout(() => isInteracting = false, 1200);
 });
 </script>
 
