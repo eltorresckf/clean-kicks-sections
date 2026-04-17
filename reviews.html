@@ -28,20 +28,14 @@ body {
 .slider {
   display: flex;
   gap: 12px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-}
-
-.slider::-webkit-scrollbar {
-  display: none;
+  overflow: hidden; /* importante para autoplay limpio */
 }
 
 .card {
-  flex: 0 0 48%;
+  flex: 0 0 calc(50% - 6px);
   background: #111;
   border-radius: 18px;
   overflow: hidden;
-  scroll-snap-align: start;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
@@ -75,7 +69,7 @@ body {
   line-height: 1.3;
 }
 
-/* Desktop ajuste */
+/* Desktop */
 @media (min-width: 768px) {
   .card {
     flex: 0 0 260px;
@@ -89,8 +83,9 @@ body {
 <div class="section">
   <div class="title">Resultados reales 🔥</div>
 
-  <div class="slider">
+  <div class="slider" id="slider">
 
+    <!-- 6 REVIEWS -->
     <div class="card">
       <img class="image" src="https://via.placeholder.com/300x200" />
       <div class="content">
@@ -118,8 +113,56 @@ body {
       </div>
     </div>
 
+    <div class="card">
+      <img class="image" src="https://via.placeholder.com/300x200" />
+      <div class="content">
+        <div class="stars">★★★★★</div>
+        <div class="name">Diego R. ✔</div>
+        <div class="text">Los dejé como nuevos en menos de 10 minutos</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="image" src="https://via.placeholder.com/300x200" />
+      <div class="content">
+        <div class="stars">★★★★★</div>
+        <div class="name">Javier M. ✔</div>
+        <div class="text">El kit vale totalmente la pena, sí funciona</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="image" src="https://via.placeholder.com/300x200" />
+      <div class="content">
+        <div class="stars">★★★★★</div>
+        <div class="name">Alex P. ✔</div>
+        <div class="text">Mis sneakers quedaron limpios sin dañarlos</div>
+      </div>
+    </div>
+
   </div>
 </div>
+
+<script>
+const slider = document.getElementById('slider');
+
+// Duplicar contenido para efecto infinito
+slider.innerHTML += slider.innerHTML;
+
+let speed = 0.3;
+
+function autoScroll() {
+  slider.scrollLeft += speed;
+
+  if (slider.scrollLeft >= slider.scrollWidth / 2) {
+    slider.scrollLeft = 0;
+  }
+
+  requestAnimationFrame(autoScroll);
+}
+
+autoScroll();
+</script>
 
 </body>
 </html>
