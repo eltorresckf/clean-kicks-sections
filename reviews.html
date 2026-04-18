@@ -155,34 +155,33 @@ body {
 <script>
 const slider = document.getElementById('slider');
 
+let speed = 0.3; // velocidad (ajusta aquí)
 let isInteracting = false;
 
-// autoplay por pasos (más natural que scroll continuo)
-function autoScroll() {
+function smoothScroll() {
   if (!isInteracting) {
-    slider.scrollBy({
-      left: slider.clientWidth * 0.9,
-      behavior: 'smooth'
-    });
+    slider.scrollLeft += speed;
+
+    // detener al llegar al final (sin loop)
+    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
+      return;
+    }
   }
+  requestAnimationFrame(smoothScroll);
 }
 
-// cada 3 segundos
-let interval = setInterval(autoScroll, 3000);
+smoothScroll();
 
-// detener al interactuar
+// detectar interacción
 slider.addEventListener('touchstart', () => isInteracting = true);
 slider.addEventListener('mousedown', () => isInteracting = true);
 
 // reanudar después
 slider.addEventListener('touchend', () => {
-  setTimeout(() => isInteracting = false, 2000);
+  setTimeout(() => isInteracting = false, 1500);
 });
 
 slider.addEventListener('mouseup', () => {
-  setTimeout(() => isInteracting = false, 2000);
+  setTimeout(() => isInteracting = false, 1500);
 });
 </script>
-
-</body>
-</html>
