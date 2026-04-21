@@ -15,7 +15,6 @@ body {
   max-width: 1100px;
   margin: auto;
   padding: 30px 15px;
-  overflow: hidden;
 }
 
 .title {
@@ -27,22 +26,20 @@ body {
 }
 
 .slider {
-  overflow: hidden;
-  width: 100%;
-}
-
-/* 👇 AQUÍ ESTÁ EL FIX */
-.track {
   display: flex;
   gap: 12px;
-  animation: scroll 30s linear infinite;
+  overflow-x: auto;
+  scroll-behavior: auto; /* 👈 importante */
+  -webkit-overflow-scrolling: touch;
 }
 
-/* 👇 CLAVE: ancho fijo para evitar colapso */
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
 .card {
-  flex: 0 0 48%;
-  min-width: 48%;
-  max-width: 48%;
+  flex: 0 0 calc(50% - 6px);
+  min-width: calc(50% - 6px);
   background: #111;
   border-radius: 18px;
   overflow: hidden;
@@ -69,7 +66,6 @@ body {
   color: #fff;
   font-weight: 600;
   font-size: 14px;
-  margin-bottom: 6px;
 }
 
 .text {
@@ -82,24 +78,7 @@ body {
   .card {
     flex: 0 0 260px;
     min-width: 260px;
-    max-width: 260px;
   }
-}
-
-/* Animación más corta para evitar “línea” */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-200px);
-  }
-}
-
-/* pausa al interactuar */
-.slider:active .track,
-.slider:hover .track {
-  animation-play-state: paused;
 }
 </style>
 </head>
@@ -109,67 +88,50 @@ body {
 <div class="section">
   <div class="title">Resultados reales 🔥</div>
 
-  <div class="slider">
-    <div class="track">
+  <div class="slider" id="slider">
 
-      <!-- 6 CARDS -->
-      <div class="card">
-        <img class="image" src="https://via.placeholder.com/300x200">
-        <div class="content">
-          <div class="stars">★★★★★</div>
-          <div class="name">Rosa G.</div>
-          <div class="text">Quedaron como nuevos</div>
-        </div>
-      </div>
+    <!-- 6 CARDS -->
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Rosa G.</div><div class="text">Quedaron como nuevos</div></div></div>
 
-      <div class="card">
-        <img class="image" src="https://via.placeholder.com/300x200">
-        <div class="content">
-          <div class="stars">★★★★★</div>
-          <div class="name">Carlos A.</div>
-          <div class="text">Mucho mejor que la lavadora</div>
-        </div>
-      </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Carlos A.</div><div class="text">Mejor que la lavadora</div></div></div>
 
-      <div class="card">
-        <img class="image" src="https://via.placeholder.com/300x200">
-        <div class="content">
-          <div class="stars">★★★★★</div>
-          <div class="name">Luis M.</div>
-          <div class="text">Sí blanquea</div>
-        </div>
-      </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Luis M.</div><div class="text">Sí blanquea</div></div></div>
 
-      <div class="card">
-        <img class="image" src="https://via.placeholder.com/300x200">
-        <div class="content">
-          <div class="stars">★★★★★</div>
-          <div class="name">Diego R.</div>
-          <div class="text">En 10 minutos listos</div>
-        </div>
-      </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Diego R.</div><div class="text">En 10 minutos listos</div></div></div>
 
-      <div class="card">
-        <img class="image" src="https://via.placeholder.com/300x200">
-        <div class="content">
-          <div class="stars">★★★★★</div>
-          <div class="name">Javier M.</div>
-          <div class="text">Sí funciona</div>
-        </div>
-      </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Javier M.</div><div class="text">Sí funciona</div></div></div>
 
-      <div class="card">
-        <img class="image" src="https://via.placeholder.com/300x200">
-        <div class="content">
-          <div class="stars">★★★★★</div>
-          <div class="name">Alex P.</div>
-          <div class="text">No daña los tenis</div>
-        </div>
-      </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Alex P.</div><div class="text">No daña los tenis</div></div></div>
 
-    </div>
   </div>
 </div>
+
+<script>
+window.onload = function() {
+  const slider = document.getElementById('slider');
+
+  let isDown = false;
+
+  // autoplay REAL usando scrollBy
+  setInterval(() => {
+    if (!isDown) {
+      slider.scrollBy({ left: 1, behavior: 'auto' });
+    }
+  }, 16); // ~60fps
+
+  // interacción
+  slider.addEventListener('touchstart', () => isDown = true);
+  slider.addEventListener('mousedown', () => isDown = true);
+
+  slider.addEventListener('touchend', () => {
+    setTimeout(() => isDown = false, 1000);
+  });
+
+  slider.addEventListener('mouseup', () => {
+    setTimeout(() => isDown = false, 1000);
+  });
+};
+</script>
 
 </body>
 </html>
