@@ -28,18 +28,21 @@ body {
 
 .slider {
   overflow: hidden;
+  width: 100%;
 }
 
+/* 👇 AQUÍ ESTÁ EL FIX */
 .track {
   display: flex;
   gap: 12px;
-  width: max-content;
-  animation: scroll 35s linear infinite;
+  animation: scroll 30s linear infinite;
 }
 
+/* 👇 CLAVE: ancho fijo para evitar colapso */
 .card {
-  flex: 0 0 calc(50vw - 18px);
-  max-width: 260px;
+  flex: 0 0 48%;
+  min-width: 48%;
+  max-width: 48%;
   background: #111;
   border-radius: 18px;
   overflow: hidden;
@@ -59,12 +62,14 @@ body {
 .stars {
   color: #00c2ff;
   font-size: 14px;
+  margin-bottom: 6px;
 }
 
 .name {
   color: #fff;
   font-weight: 600;
   font-size: 14px;
+  margin-bottom: 6px;
 }
 
 .text {
@@ -72,23 +77,29 @@ body {
   font-size: 13px;
 }
 
-/* PAUSA AL INTERACTUAR */
-.track:active {
-  animation-play-state: paused;
+/* Desktop */
+@media (min-width: 768px) {
+  .card {
+    flex: 0 0 260px;
+    min-width: 260px;
+    max-width: 260px;
+  }
 }
 
-.slider:hover .track {
-  animation-play-state: paused;
-}
-
-/* ANIMACIÓN */
+/* Animación más corta para evitar “línea” */
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-30%);
+    transform: translateX(-200px);
   }
+}
+
+/* pausa al interactuar */
+.slider:active .track,
+.slider:hover .track {
+  animation-play-state: paused;
 }
 </style>
 </head>
@@ -102,12 +113,59 @@ body {
     <div class="track">
 
       <!-- 6 CARDS -->
-      <div class="card">...</div>
-      <div class="card">...</div>
-      <div class="card">...</div>
-      <div class="card">...</div>
-      <div class="card">...</div>
-      <div class="card">...</div>
+      <div class="card">
+        <img class="image" src="https://via.placeholder.com/300x200">
+        <div class="content">
+          <div class="stars">★★★★★</div>
+          <div class="name">Rosa G.</div>
+          <div class="text">Quedaron como nuevos</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="image" src="https://via.placeholder.com/300x200">
+        <div class="content">
+          <div class="stars">★★★★★</div>
+          <div class="name">Carlos A.</div>
+          <div class="text">Mucho mejor que la lavadora</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="image" src="https://via.placeholder.com/300x200">
+        <div class="content">
+          <div class="stars">★★★★★</div>
+          <div class="name">Luis M.</div>
+          <div class="text">Sí blanquea</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="image" src="https://via.placeholder.com/300x200">
+        <div class="content">
+          <div class="stars">★★★★★</div>
+          <div class="name">Diego R.</div>
+          <div class="text">En 10 minutos listos</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="image" src="https://via.placeholder.com/300x200">
+        <div class="content">
+          <div class="stars">★★★★★</div>
+          <div class="name">Javier M.</div>
+          <div class="text">Sí funciona</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="image" src="https://via.placeholder.com/300x200">
+        <div class="content">
+          <div class="stars">★★★★★</div>
+          <div class="name">Alex P.</div>
+          <div class="text">No daña los tenis</div>
+        </div>
+      </div>
 
     </div>
   </div>
