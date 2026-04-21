@@ -153,38 +153,34 @@ body {
 </div>
 
 <script>
-const slider = document.getElementById('slider');
+window.onload = function() {
+  const slider = document.getElementById('slider');
 
-let speed = 0.3;
-let isInteracting = false;
+  let speed = 0.25;
+  let isInteracting = false;
 
-function smoothScroll() {
-  if (!isInteracting) {
-    slider.scrollLeft += speed;
+  setInterval(() => {
+    if (!isInteracting) {
+      slider.scrollLeft += speed;
 
-    // cuando llega al final, regresa suavemente al inicio
-    if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
-      slider.scrollTo({
-        left: 0,
-        behavior: 'smooth'
-      });
+      if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+        slider.scrollLeft = 0;
+      }
     }
-  }
+  }, 10);
 
-  requestAnimationFrame(smoothScroll);
-}
+  slider.addEventListener('touchstart', () => isInteracting = true);
+  slider.addEventListener('mousedown', () => isInteracting = true);
 
-smoothScroll();
+  slider.addEventListener('touchend', () => {
+    setTimeout(() => isInteracting = false, 1200);
+  });
 
-// interacción usuario
-slider.addEventListener('touchstart', () => isInteracting = true);
-slider.addEventListener('mousedown', () => isInteracting = true);
-
-slider.addEventListener('touchend', () => {
-  setTimeout(() => isInteracting = false, 1500);
-});
-
-slider.addEventListener('mouseup', () => {
-  setTimeout(() => isInteracting = false, 1500);
-});
+  slider.addEventListener('mouseup', () => {
+    setTimeout(() => isInteracting = false, 1200);
+  });
+};
 </script>
+
+</body>
+</html>
