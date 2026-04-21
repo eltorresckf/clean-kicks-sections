@@ -110,26 +110,37 @@ body {
 window.onload = function() {
   const slider = document.getElementById('slider');
 
-  let isDown = false;
+  let isInteracting = false;
+  let interactionTimeout;
 
-  // autoplay REAL usando scrollBy
+  // autoplay suave
   setInterval(() => {
-    if (!isDown) {
-      slider.scrollBy({ left: 1, behavior: 'auto' });
+    if (!isInteracting) {
+      slider.scrollLeft += 0.5;
     }
-  }, 16); // ~60fps
+  }, 16);
 
-  // interacción
-  slider.addEventListener('touchstart', () => isDown = true);
-  slider.addEventListener('mousedown', () => isDown = true);
+  // función para pausar
+  function pauseScroll() {
+    isInteracting = true;
 
-  slider.addEventListener('touchend', () => {
-    setTimeout(() => isDown = false, 1000);
-  });
+    clearTimeout(interactionTimeout);
+    interactionTimeout = setTimeout(() => {
+      isInteracting = false;
+    }, 1200); // tiempo antes de reanudar
+  }
 
-  slider.addEventListener('mouseup', () => {
-    setTimeout(() => isDown = false, 1000);
-  });
+  // eventos de interacción
+  slider.addEventListener('touchstart', pauseScroll);
+  slider.addEventListener('touchmove', pauseScroll);
+  slider.addEventListener('touchend', pauseScroll);
+
+  slider.addEventListener('mousedown', pauseScroll);
+  slider.addEventListener('mousemove', pauseScroll);
+  slider.addEventListener('mouseup', pauseScroll);
+
+  // 🔥 CLAVE: detectar scroll manual
+  slider.addEventListener('scroll', pauseScroll);
 };
 </script>
 
