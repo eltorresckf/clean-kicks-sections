@@ -155,28 +155,31 @@ body {
 <script>
 const slider = document.getElementById('slider');
 
-let speed = 0.3; // velocidad (ajusta aquí)
+let speed = 0.3;
 let isInteracting = false;
 
 function smoothScroll() {
   if (!isInteracting) {
     slider.scrollLeft += speed;
 
-    // detener al llegar al final (sin loop)
-    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
-      return;
+    // cuando llega al final, regresa suavemente al inicio
+    if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+      slider.scrollTo({
+        left: 0,
+        behavior: 'smooth'
+      });
     }
   }
+
   requestAnimationFrame(smoothScroll);
 }
 
 smoothScroll();
 
-// detectar interacción
+// interacción usuario
 slider.addEventListener('touchstart', () => isInteracting = true);
 slider.addEventListener('mousedown', () => isInteracting = true);
 
-// reanudar después
 slider.addEventListener('touchend', () => {
   setTimeout(() => isInteracting = false, 1500);
 });
