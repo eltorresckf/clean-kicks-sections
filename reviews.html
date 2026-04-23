@@ -29,7 +29,6 @@ body {
   display: flex;
   gap: 12px;
   overflow-x: auto;
-  scroll-behavior: auto; /* 👈 importante */
   -webkit-overflow-scrolling: touch;
 }
 
@@ -59,7 +58,6 @@ body {
 .stars {
   color: #00c2ff;
   font-size: 14px;
-  margin-bottom: 6px;
 }
 
 .name {
@@ -73,7 +71,6 @@ body {
   font-size: 13px;
 }
 
-/* Desktop */
 @media (min-width: 768px) {
   .card {
     flex: 0 0 260px;
@@ -90,7 +87,6 @@ body {
 
   <div class="slider" id="slider">
 
-    <!-- 6 CARDS -->
     <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Rosa G.</div><div class="text">Quedaron como nuevos</div></div></div>
 
     <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Carlos A.</div><div class="text">Mejor que la lavadora</div></div></div>
@@ -110,37 +106,9 @@ body {
 window.onload = function() {
   const slider = document.getElementById('slider');
 
-  let isInteracting = false;
-  let interactionTimeout;
-
-  // autoplay suave
   setInterval(() => {
-    if (!isInteracting) {
-      slider.scrollLeft += 0.5;
-    }
-  }, 16);
-
-  // función para pausar
-  function pauseScroll() {
-    isInteracting = true;
-
-    clearTimeout(interactionTimeout);
-    interactionTimeout = setTimeout(() => {
-      isInteracting = false;
-    }, 1200); // tiempo antes de reanudar
-  }
-
-  // eventos de interacción
-  slider.addEventListener('touchstart', pauseScroll);
-  slider.addEventListener('touchmove', pauseScroll);
-  slider.addEventListener('touchend', pauseScroll);
-
-  slider.addEventListener('mousedown', pauseScroll);
-  slider.addEventListener('mousemove', pauseScroll);
-  slider.addEventListener('mouseup', pauseScroll);
-
-  // 🔥 CLAVE: detectar scroll manual
-  slider.addEventListener('scroll', pauseScroll);
+    slider.scrollLeft += 0.3;
+  }, 10);
 };
 </script>
 
