@@ -29,7 +29,7 @@ body {
   display: flex;
   gap: 12px;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 }
 
 .slider::-webkit-scrollbar {
@@ -37,11 +37,12 @@ body {
 }
 
 .card {
-  flex: 0 0 calc(50% - 6px);
-  min-width: calc(50% - 6px);
+  flex: 0 0 48%;
   background: #111;
   border-radius: 18px;
   overflow: hidden;
+  scroll-snap-align: start;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
 .image {
@@ -58,23 +59,26 @@ body {
 .stars {
   color: #00c2ff;
   font-size: 14px;
+  margin-bottom: 6px;
 }
 
 .name {
   color: #fff;
   font-weight: 600;
   font-size: 14px;
+  margin-bottom: 6px;
 }
 
 .text {
   color: #ccc;
   font-size: 13px;
+  line-height: 1.3;
 }
 
+/* Desktop ajuste */
 @media (min-width: 768px) {
   .card {
     flex: 0 0 260px;
-    min-width: 260px;
   }
 }
 </style>
@@ -85,32 +89,37 @@ body {
 <div class="section">
   <div class="title">Resultados reales 🔥</div>
 
-  <div class="slider" id="slider">
+  <div class="slider">
 
-    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Rosa G.</div><div class="text">Quedaron como nuevos</div></div></div>
+    <div class="card">
+      <img class="image" src="https://via.placeholder.com/300x200" />
+      <div class="content">
+        <div class="stars">★★★★★</div>
+        <div class="name">Rosa G. ✔</div>
+        <div class="text">Pensé que ya no tenían solución y quedaron como nuevos</div>
+      </div>
+    </div>
 
-    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Carlos A.</div><div class="text">Mejor que la lavadora</div></div></div>
+    <div class="card">
+      <img class="image" src="https://via.placeholder.com/300x200" />
+      <div class="content">
+        <div class="stars">★★★★★</div>
+        <div class="name">Carlos A. ✔</div>
+        <div class="text">Mucho mejor que meterlos a la lavadora</div>
+      </div>
+    </div>
 
-    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Luis M.</div><div class="text">Sí blanquea</div></div></div>
-
-    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Diego R.</div><div class="text">En 10 minutos listos</div></div></div>
-
-    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Javier M.</div><div class="text">Sí funciona</div></div></div>
-
-    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Alex P.</div><div class="text">No daña los tenis</div></div></div>
+    <div class="card">
+      <img class="image" src="https://via.placeholder.com/300x200" />
+      <div class="content">
+        <div class="stars">★★★★★</div>
+        <div class="name">Luis M. ✔</div>
+        <div class="text">Sí blanquea las suelas, 100% recomendado</div>
+      </div>
+    </div>
 
   </div>
 </div>
-
-<script>
-window.onload = function() {
-  const slider = document.getElementById('slider');
-
-  setInterval(() => {
-    slider.scrollLeft += 0.3;
-  }, 10);
-};
-</script>
 
 </body>
 </html>
