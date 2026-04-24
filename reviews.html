@@ -29,8 +29,11 @@ body {
   display: flex;
   gap: 12px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+
+  /* IMPORTANTE: quitamos snap porque rompe el autoscroll */
+  scroll-snap-type: none;
+
+  -webkit-overflow-scrolling: touch;
 }
 
 .slider::-webkit-scrollbar {
@@ -42,7 +45,6 @@ body {
   background: #111;
   border-radius: 18px;
   overflow: hidden;
-  scroll-snap-align: start;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
@@ -92,59 +94,17 @@ body {
   <div class="slider" id="slider">
 
     <!-- 6 TARJETAS -->
-    <div class="card">
-      <img class="image" src="https://via.placeholder.com/300x200" />
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="name">Rosa G. ✔</div>
-        <div class="text">Pensé que ya no tenían solución y quedaron como nuevos</div>
-      </div>
-    </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Rosa G. ✔</div><div class="text">Pensé que ya no tenían solución y quedaron como nuevos</div></div></div>
 
-    <div class="card">
-      <img class="image" src="https://via.placeholder.com/300x200" />
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="name">Carlos A. ✔</div>
-        <div class="text">Mucho mejor que meterlos a la lavadora</div>
-      </div>
-    </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Carlos A. ✔</div><div class="text">Mucho mejor que meterlos a la lavadora</div></div></div>
 
-    <div class="card">
-      <img class="image" src="https://via.placeholder.com/300x200" />
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="name">Luis M. ✔</div>
-        <div class="text">Sí blanquea las suelas, 100% recomendado</div>
-      </div>
-    </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Luis M. ✔</div><div class="text">Sí blanquea las suelas, 100% recomendado</div></div></div>
 
-    <div class="card">
-      <img class="image" src="https://via.placeholder.com/300x200" />
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="name">Andrea P. ✔</div>
-        <div class="text">Literal parecían otros tenis después de limpiarlos</div>
-      </div>
-    </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Andrea P. ✔</div><div class="text">Literal parecían otros tenis después de limpiarlos</div></div></div>
 
-    <div class="card">
-      <img class="image" src="https://via.placeholder.com/300x200" />
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="name">Miguel R. ✔</div>
-        <div class="text">No pensé que fuera tan fácil dejarlos así de limpios</div>
-      </div>
-    </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Miguel R. ✔</div><div class="text">No pensé que fuera tan fácil dejarlos así de limpios</div></div></div>
 
-    <div class="card">
-      <img class="image" src="https://via.placeholder.com/300x200" />
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="name">Fernanda L. ✔</div>
-        <div class="text">El kit sí vale la pena, se ve la diferencia</div>
-      </div>
-    </div>
+    <div class="card"><img class="image" src="https://via.placeholder.com/300x200"><div class="content"><div class="stars">★★★★★</div><div class="name">Fernanda L. ✔</div><div class="text">El kit sí vale la pena, se ve la diferencia</div></div></div>
 
   </div>
 </div>
@@ -152,34 +112,28 @@ body {
 <script>
 const slider = document.getElementById("slider");
 
-let autoScroll;
+let speed = 0.4;
 let isInteracting = false;
+let stopped = false;
 
-// velocidad (ajusta aquí)
-const speed = 0.5;
-
-function startAutoScroll() {
-  autoScroll = setInterval(() => {
-    if (!isInteracting) {
-      slider.scrollLeft += speed;
-    }
-  }, 16); // ~60fps
+function autoScroll() {
+  if (!isInteracting && !stopped) {
+    slider.scrollLeft += speed;
+  }
+  requestAnimationFrame(autoScroll);
 }
 
-function stopAutoScroll() {
-  clearInterval(autoScroll);
+// detectar interacción → detener completamente
+function stopForever() {
+  isInteracting = true;
+  stopped = true;
 }
 
-// detectar interacción
-slider.addEventListener("mousedown", () => isInteracting = true);
-slider.addEventListener("touchstart", () => isInteracting = true);
+slider.addEventListener("mousedown", stopForever);
+slider.addEventListener("touchstart", stopForever);
+slider.addEventListener("wheel", stopForever);
 
-slider.addEventListener("mouseup", () => isInteracting = false);
-slider.addEventListener("mouseleave", () => isInteracting = false);
-slider.addEventListener("touchend", () => isInteracting = false);
-
-// iniciar
-startAutoScroll();
+autoScroll();
 </script>
 
 </body>
