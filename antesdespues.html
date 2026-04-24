@@ -132,11 +132,16 @@ window.addEventListener('mousemove', (e) => {
   moveSlider(e.clientX);
 });
 
-// 🔥 NUEVO: HOVER EN DESKTOP (SIN CLICK)
+// 🔥 HOVER EN DESKTOP (SIN CLICK)
 if (!isMobile) {
   slider.addEventListener('mousemove', (e) => {
     autoMove = false;
     moveSlider(e.clientX);
+  });
+
+  // 🔥 NUEVO: REACTIVAR AUTO CUANDO SALE EL MOUSE
+  slider.addEventListener('mouseleave', () => {
+    autoMove = true;
   });
 }
 
