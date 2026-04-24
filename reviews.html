@@ -110,31 +110,28 @@ body {
 </div>
 
 <script>
-const slider = document.getElementById("slider");
+const slider = document.querySelector(".slider");
 
-let speed = 0.4;
-let isInteracting = false;
-let stopped = false;
+let autoScrollActive = true;
+let speed = 0.3;
 
+// loop suave
 function autoScroll() {
-  if (!isInteracting && !stopped) {
+  if (autoScrollActive) {
     slider.scrollLeft += speed;
   }
   requestAnimationFrame(autoScroll);
 }
 
-// detectar interacción → detener completamente
-function stopForever() {
-  isInteracting = true;
-  stopped = true;
+// detener al interactuar
+function stopScroll() {
+  autoScrollActive = false;
 }
 
-slider.addEventListener("mousedown", stopForever);
-slider.addEventListener("touchstart", stopForever);
-slider.addEventListener("wheel", stopForever);
+slider.addEventListener("mousedown", stopScroll);
+slider.addEventListener("touchstart", stopScroll);
+slider.addEventListener("wheel", stopScroll);
 
+// iniciar
 autoScroll();
 </script>
-
-</body>
-</html>
