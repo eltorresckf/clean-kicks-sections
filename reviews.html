@@ -210,8 +210,9 @@ function autoScroll() {
   if (!isInteracting) {
     carousel.scrollLeft += speed;
 
-    if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-      carousel.scrollLeft = 0;
+    // 🔥 detener al final (sin loop)
+    if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
+      carousel.scrollLeft = carousel.scrollWidth - carousel.clientWidth;
     }
   }
   requestAnimationFrame(autoScroll);
@@ -226,7 +227,7 @@ carousel.addEventListener('touchend', () => isInteracting = false);
 
 autoScroll();
 
-/* AUTO HEIGHT */
+/* AUTO HEIGHT (no tocar) */
 function sendHeight() {
   const height = document.documentElement.scrollHeight;
   window.parent.postMessage({ type: "resize-iframe", height }, "*");
