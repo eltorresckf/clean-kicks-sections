@@ -242,6 +242,17 @@ window.addEventListener("resize", sendHeight);
 setTimeout(sendHeight, 300);
 setTimeout(sendHeight, 800);
 setTimeout(sendHeight, 1500);
+  function sendHeight() {
+  const height = document.body.scrollHeight;
+  window.parent.postMessage({
+    type: "resize",
+    id: "reviews",
+    height: height
+  }, "*");
+}
+
+window.addEventListener("load", sendHeight);
+window.addEventListener("resize", sendHeight);
 </script>
 
 </body>
