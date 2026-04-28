@@ -174,7 +174,7 @@ Si después de usar nuestros productos no notas una mejoría clara en la limpiez
 
   function updateHeight() {
     const height = document.body.scrollHeight;
-    window.parent.postMessage({ type: "resize", height: height }, "*");
+    window.parent.postMessage({ type: "resize", id: "incluido", height: height }, "*");
   }
 
   items.forEach(item => {
@@ -189,12 +189,11 @@ Si después de usar nuestros productos no notas una mejoría clara en la limpiez
         content.style.maxHeight = content.scrollHeight + "px";
       }
 
-      setTimeout(updateHeight, 400);
+      setTimeout(updateHeight, 600);
     });
   });
 
   window.addEventListener("load", updateHeight);
 </script>
-
 </body>
 </html>
