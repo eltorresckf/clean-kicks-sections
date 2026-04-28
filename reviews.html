@@ -170,43 +170,26 @@ html, body {
 </div>
 
 <script>
-const carousel = document.getElementById('carousel');
-
-let isInteracting = false;
-let speed = 0.5;
-
-function autoScroll() {
-  if (!isInteracting) {
-    carousel.scrollLeft += speed;
-
-    if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-      carousel.scrollLeft = 0;
-    }
-  }
-  requestAnimationFrame(autoScroll);
-}
-
-// interacción usuario
-carousel.addEventListener('mousedown', () => isInteracting = true);
-carousel.addEventListener('touchstart', () => isInteracting = true);
-
-carousel.addEventListener('mouseup', () => isInteracting = false);
-carousel.addEventListener('mouseleave', () => isInteracting = false);
-carousel.addEventListener('touchend', () => isInteracting = false);
-
-autoScroll();
-
-/* 🔥 AUTO HEIGHT */
 function sendHeight() {
   const height = document.documentElement.scrollHeight;
   window.parent.postMessage({ type: "resize-iframe", height }, "*");
 }
 
+/* 🔥 Detecta cambios reales de tamaño */
+const observer = new ResizeObserver(() => {
+  sendHeight();
+});
+
+observer.observe(document.body);
+
+/* Seguridad extra */
 window.addEventListener("load", sendHeight);
 window.addEventListener("resize", sendHeight);
 
+/* Re-disparos por mobile (clave) */
 setTimeout(sendHeight, 300);
-setTimeout(sendHeight, 1000);
+setTimeout(sendHeight, 800);
+setTimeout(sendHeight, 1500);
 </script>
 
 </body>
