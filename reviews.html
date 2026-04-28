@@ -102,14 +102,10 @@ html, body {
   color: #ccc;
 }
 
-/* 🔥 NUEVO: comprador verificado */
 .verified {
   font-size: 10px;
   color: #4CAF50;
   margin-top: 4px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
 }
 </style>
 </head>
@@ -125,54 +121,35 @@ html, body {
 
   <div class="carousel" id="carousel">
 
-    <div class="card">
-      <img src="https://via.placeholder.com/600x400" class="review-img">
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="text">Quitó lo amarillo completamente</div>
-        <div class="name">— Miguel A.</div>
-        <div class="verified">✔ Comprador verificado</div>
-      </div>
-    </div>
+    <!-- 7 TARJETAS -->
+    <div class="card"><img src="https://via.placeholder.com/600x400" class="review-img"><div class="content"><div class="stars">★★★★★</div><div class="text">Quitó lo amarillo completamente</div><div class="name">— Miguel A.</div><div class="verified">✔ Comprador verificado</div></div></div>
 
-    <div class="card">
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="text">Mucho mejor que usar jabón normal</div>
-        <div class="name">— Iván R.</div>
-        <div class="verified">✔ Comprador verificado</div>
-      </div>
-    </div>
+    <div class="card"><div class="content"><div class="stars">★★★★★</div><div class="text">Mucho mejor que usar jabón normal</div><div class="name">— Iván R.</div><div class="verified">✔ Comprador verificado</div></div></div>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/600x400" class="review-img">
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="text">Mis Jordan quedaron como nuevos</div>
-        <div class="name">— Luis M.</div>
-        <div class="verified">✔ Comprador verificado</div>
-      </div>
-    </div>
+    <div class="card"><img src="https://via.placeholder.com/600x400" class="review-img"><div class="content"><div class="stars">★★★★★</div><div class="text">Mis Jordan quedaron como nuevos</div><div class="name">— Luis M.</div><div class="verified">✔ Comprador verificado</div></div></div>
 
-    <div class="card">
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="text">Cepillo seguro, no daña</div>
-        <div class="name">— Carlos D.</div>
-        <div class="verified">✔ Comprador verificado</div>
-      </div>
-    </div>
+    <div class="card"><div class="content"><div class="stars">★★★★★</div><div class="text">Cepillo seguro, no daña</div><div class="name">— Carlos D.</div><div class="verified">✔ Comprador verificado</div></div></div>
+
+    <div class="card"><img src="https://via.placeholder.com/600x400" class="review-img"><div class="content"><div class="stars">★★★★★</div><div class="text">Quitó manchas en minutos</div><div class="name">— Eduardo T.</div><div class="verified">✔ Comprador verificado</div></div></div>
+
+    <div class="card"><div class="content"><div class="stars">★★★★★</div><div class="text">No maltrata el material</div><div class="name">— Javier P.</div><div class="verified">✔ Comprador verificado</div></div></div>
+
+    <div class="card"><img src="https://via.placeholder.com/600x400" class="review-img"><div class="content"><div class="stars">★★★★★</div><div class="text">Resultados desde la primera limpieza</div><div class="name">— Daniel H.</div><div class="verified">✔ Comprador verificado</div></div></div>
 
     <!-- DUPLICADO -->
-    <div class="card">
-      <img src="https://via.placeholder.com/600x400" class="review-img">
-      <div class="content">
-        <div class="stars">★★★★★</div>
-        <div class="text">Quitó lo amarillo completamente</div>
-        <div class="name">— Miguel A.</div>
-        <div class="verified">✔ Comprador verificado</div>
-      </div>
-    </div>
+    <div class="card"><img src="https://via.placeholder.com/600x400" class="review-img"><div class="content"><div class="stars">★★★★★</div><div class="text">Quitó lo amarillo completamente</div><div class="name">— Miguel A.</div><div class="verified">✔ Comprador verificado</div></div></div>
+
+    <div class="card"><div class="content"><div class="stars">★★★★★</div><div class="text">Mucho mejor que usar jabón normal</div><div class="name">— Iván R.</div><div class="verified">✔ Comprador verificado</div></div></div>
+
+    <div class="card"><img src="https://via.placeholder.com/600x400" class="review-img"><div class="content"><div class="stars">★★★★★</div><div class="text">Mis Jordan quedaron como nuevos</div><div class="name">— Luis M.</div><div class="verified">✔ Comprador verificado</div></div></div>
+
+    <div class="card"><div class="content"><div class="stars">★★★★★</div><div class="text">Cepillo seguro, no daña</div><div class="name">— Carlos D.</div><div class="verified">✔ Comprador verificado</div></div></div>
+
+    <div class="card"><img src="https://via.placeholder.com/600x400" class="review-img"><div class="content"><div class="stars">★★★★★</div><div class="text">Quitó manchas en minutos</div><div class="name">— Eduardo T.</div><div class="verified">✔ Comprador verificado</div></div></div>
+
+    <div class="card"><div class="content"><div class="stars">★★★★★</div><div class="text">No maltrata el material</div><div class="name">— Javier P.</div><div class="verified">✔ Comprador verificado</div></div></div>
+
+    <div class="card"><img src="https://via.placeholder.com/600x400" class="review-img"><div class="content"><div class="stars">★★★★★</div><div class="text">Resultados desde la primera limpieza</div><div class="name">— Daniel H.</div><div class="verified">✔ Comprador verificado</div></div></div>
 
   </div>
 
@@ -203,22 +180,6 @@ carousel.addEventListener('mouseleave', () => isInteracting = false);
 carousel.addEventListener('touchend', () => isInteracting = false);
 
 autoScroll();
-
-/* AUTO HEIGHT */
-function sendHeight() {
-  const height = document.documentElement.scrollHeight;
-  window.parent.postMessage({ type: "resize-iframe", height }, "*");
-}
-
-const observer = new ResizeObserver(sendHeight);
-observer.observe(document.body);
-
-window.addEventListener("load", sendHeight);
-window.addEventListener("resize", sendHeight);
-
-setTimeout(sendHeight, 300);
-setTimeout(sendHeight, 800);
-setTimeout(sendHeight, 1500);
 </script>
 
 </body>
