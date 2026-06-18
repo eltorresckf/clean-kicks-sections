@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    font-family:'Montserrat',sans-serif;
+}
+
+.section{
+    max-width:1200px;
+    margin:100px auto 80px;
+    padding:0 20px;
+}
+
+/* TÍTULO */
+
+.section-title{
+    text-align:center;
+    color:#fff;
+    font-size:56px;
+    font-weight:800;
+    line-height:1.1;
+    text-transform:uppercase;
+    margin-bottom:120px;
+}
+
+.section-title::after{
+    content:'';
+    display:block;
+    width:90px;
+    height:3px;
+    background:#cd9341;
+    margin:22px auto 0;
+    border-radius:999px;
+}
+
+/* TARJETA */
+
+.card{
+    position:relative;
+
+    background:linear-gradient(
+        180deg,
+        #181818 0%,
+        #101010 100%
+    );
+
+    border-radius:36px;
+
+    padding:100px 50px 60px;
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.5),
+        inset 0 1px 0 rgba(255,255,255,.04);
+
+    overflow:visible;
+}
+
+/* HALO DORADO */
+
+.glow{
+    position:absolute;
+    top:-95px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:300px;
+    height:300px;
+
+    background:radial-gradient(
+        circle,
+        rgba(205,147,65,.35) 0%,
+        rgba(205,147,65,.15) 40%,
+        rgba(205,147,65,0) 75%
+    );
+
+    pointer-events:none;
+}
+
+/* IMAGEN KIT */
+
+.product-image{
+    position:absolute;
+    top:-140px;
+    left:50%;
+    transform:translateX(-50%);
+    width:260px;
+    z-index:2;
+}
+
+.product-image img{
+    width:100%;
+    display:block;
+
+    filter:drop-shadow(
+        0 15px 30px rgba(0,0,0,.45)
+    );
+}
+
+/* BENEFICIOS */
+
+.benefits{
+    max-width:900px;
+    margin:0 auto;
+
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+.benefit{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+}
+
+.icon{
+    width:34px;
+    height:34px;
+    min-width:34px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#cd9341;
+    color:#000;
+
+    font-size:18px;
+    font-weight:700;
+
+    margin-top:2px;
+}
+
+.text{
+    color:#fff;
+    font-size:22px;
+    line-height:1.6;
+    font-weight:400;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .section{
+        margin:80px auto 60px;
+        padding:0 15px;
+    }
+
+    .section-title{
+        font-size:32px;
+        margin-bottom:95px;
+    }
+
+    .section-title::after{
+        width:70px;
+    }
+
+    .card{
+        padding:90px 25px 35px;
+        border-radius:28px;
+    }
+
+    .glow{
+        width:220px;
+        height:220px;
+        top:-60px;
+    }
+
+    .product-image{
+        width:170px;
+        top:-85px;
+    }
+
+    .benefits{
+        gap:18px;
+    }
+
+    .icon{
+        width:28px;
+        height:28px;
+        min-width:28px;
+        font-size:15px;
+    }
+
+    .text{
+        font-size:17px;
+        line-height:1.5;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="section">
+
+    <h2 class="section-title">
+        ¿POR QUÉ ELEGIR<br>
+        CLEAN KICKS FACTORY?
+    </h2>
+
+    <div class="card">
+
+        <div class="glow"></div>
+
+        <div class="product-image">
+            <img src="assets/kit-completo.webp" alt="Kit Clean Kicks Factory">
+        </div>
+
+        <div class="benefits">
+
+            <div class="benefit">
+                <div class="icon">✓</div>
+                <div class="text">
+                    Limpia suciedad, polvo y manchas sin dañar los materiales.
+                </div>
+            </div>
+
+            <div class="benefit">
+                <div class="icon">✓</div>
+                <div class="text">
+                    Fórmula premium de alto rendimiento para uso frecuente.
+                </div>
+            </div>
+
+            <div class="benefit">
+                <div class="icon">✓</div>
+                <div class="text">
+                    Compatible con piel, lona, malla, sintéticos y más.
+                </div>
+            </div>
+
+            <div class="benefit">
+                <div class="icon">✓</div>
+                <div class="text">
+                    Cepillo premium incluido para una limpieza profunda.
+                </div>
+            </div>
+
+            <div class="benefit">
+                <div class="icon">✓</div>
+                <div class="text">
+                    Hasta 100 limpiezas por botella.
+                </div>
+            </div>
+
+            <div class="benefit">
+                <div class="icon">✓</div>
+                <div class="text">
+                    Mantén tus sneakers impecables y conserva su valor por más tiempo.
+                </div>
+            </div>
+
+            <div class="benefit">
+                <div class="icon">✓</div>
+                <div class="text">
+                    Compra segura con Mercado Pago, PayPal y tarjetas.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
