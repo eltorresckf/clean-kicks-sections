@@ -23,32 +23,56 @@ body{
     padding:40px 24px;
 }
 
+/* =========================
+   MÉTODOS DE PAGO
+========================= */
+
 .payment-logos{
     display:flex;
     justify-content:center;
     align-items:center;
     flex-wrap:wrap;
-    gap:32px;
+    gap:14px;
     margin-bottom:40px;
 }
 
-.payment-logos img{
-    height:28px;
-    width:auto;
-    object-fit:contain;
-    display:block;
-    transition:opacity .3s ease;
+.payment-card{
+    width:130px;
+    height:64px;
+
+    background:#f8f8f8;
+
+    border:1px solid rgba(0,0,0,.06);
+
+    border-radius:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:12px;
+
+    box-shadow:
+        0 2px 8px rgba(255,255,255,.04);
 }
 
-.payment-logos img:hover{
-    opacity:.85;
+.payment-card img{
+    max-width:90%;
+    max-height:30px;
+    width:auto;
+    height:auto;
+    object-fit:contain;
 }
+
+/* =========================
+   BENEFICIOS
+========================= */
 
 .benefits{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
-    align-items:center;
     width:100%;
+    align-items:center;
 }
 
 .benefit{
@@ -85,6 +109,10 @@ body{
     letter-spacing:.2px;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:768px){
 
     .section{
@@ -94,18 +122,24 @@ body{
     .payment-logos{
         display:grid;
         grid-template-columns:repeat(3,1fr);
-        gap:20px 10px;
+        gap:12px;
         margin-bottom:30px;
     }
 
-    .payment-logos img{
-        height:24px;
-        margin:auto;
+    .payment-card{
+        width:100%;
+        height:58px;
+        padding:10px;
+    }
+
+    .payment-card img{
+        max-height:24px;
     }
 
     .benefits{
         grid-template-columns:1fr;
         gap:18px;
+        margin-top:10px;
     }
 
     .benefit{
@@ -122,17 +156,29 @@ body{
 
     <div class="payment-logos">
 
-        <img src="assets/visa.png" alt="Visa">
+        <div class="payment-card">
+            <img src="assets/visa.png" alt="Visa">
+        </div>
 
-        <img src="assets/mastercard.svg" alt="Mastercard">
+        <div class="payment-card">
+            <img src="assets/mastercard.png" alt="Mastercard">
+        </div>
 
-        <img src="assets/americanexpress.png" alt="American Express">
+        <div class="payment-card">
+            <img src="assets/amex.png" alt="American Express">
+        </div>
 
-        <img src="assets/mercadopago.png" alt="Mercado Pago">
+        <div class="payment-card">
+            <img src="assets/mercadopago.png" alt="Mercado Pago">
+        </div>
 
-        <img src="assets/oxxo.png" alt="OXXO Pay">
+        <div class="payment-card">
+            <img src="assets/oxxopay.png" alt="OXXO Pay">
+        </div>
 
-        <img src="assets/paypal.png" alt="PayPal">
+        <div class="payment-card">
+            <img src="assets/paypal.png" alt="PayPal">
+        </div>
 
     </div>
 
@@ -181,11 +227,11 @@ body{
 
 <script>
 function sendHeight() {
-  const height = document.documentElement.scrollHeight;
-  parent.postMessage(
-    { iframeHeight: height },
-    "*"
-  );
+    const height = document.documentElement.scrollHeight;
+    parent.postMessage(
+        { iframeHeight: height },
+        "*"
+    );
 }
 
 window.addEventListener("load", sendHeight);
