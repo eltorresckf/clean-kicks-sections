@@ -21,11 +21,11 @@ body{
 
 .section{
     max-width:1200px;
-    margin:100px auto 80px;
+    margin:120px auto 100px;
     padding:0 20px;
 }
 
-/* TÍTULO */
+/* TITULO */
 
 .section-title{
     text-align:center;
@@ -34,7 +34,7 @@ body{
     font-weight:800;
     line-height:1.1;
     text-transform:uppercase;
-    margin-bottom:120px;
+    margin-bottom:150px;
 }
 
 .section-title::after{
@@ -47,78 +47,105 @@ body{
     border-radius:999px;
 }
 
-/* TARJETA */
+/* TARJETA GLASS */
 
 .card{
     position:relative;
 
-    background:linear-gradient(
-        180deg,
-        #181818 0%,
-        #101010 100%
-    );
+    max-width:900px;
+    margin:0 auto;
 
-    border-radius:36px;
+    padding:130px 55px 70px;
 
-    padding:100px 50px 60px;
+    border-radius:40px;
+
+    background:rgba(20,20,20,.55);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
 
     box-shadow:
-        0 30px 60px rgba(0,0,0,.5),
-        inset 0 1px 0 rgba(255,255,255,.04);
+        0 30px 80px rgba(0,0,0,.65),
+        inset 0 1px 0 rgba(255,255,255,.08);
 
     overflow:visible;
+}
+
+/* REFLEJO SUPERIOR */
+
+.card::before{
+    content:'';
+
+    position:absolute;
+    inset:0;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.06) 0%,
+        rgba(255,255,255,0) 25%
+    );
+
+    pointer-events:none;
 }
 
 /* HALO DORADO */
 
 .glow{
     position:absolute;
-    top:-95px;
+
+    top:-120px;
     left:50%;
+
     transform:translateX(-50%);
 
-    width:300px;
-    height:300px;
+    width:420px;
+    height:420px;
 
-    background:radial-gradient(
+    background:
+    radial-gradient(
         circle,
-        rgba(205,147,65,.35) 0%,
+        rgba(205,147,65,.40) 0%,
         rgba(205,147,65,.15) 40%,
-        rgba(205,147,65,0) 75%
+        transparent 75%
     );
 
     pointer-events:none;
 }
 
-/* IMAGEN KIT */
+/* KIT */
 
 .product-image{
     position:absolute;
-    top:-140px;
+
+    top:-180px;
     left:50%;
+
     transform:translateX(-50%);
-    width:260px;
-    z-index:2;
+
+    width:320px;
+
+    z-index:3;
 }
 
 .product-image img{
     width:100%;
     display:block;
 
-    filter:drop-shadow(
-        0 15px 30px rgba(0,0,0,.45)
-    );
+    filter:
+        drop-shadow(0 25px 40px rgba(0,0,0,.55));
 }
 
 /* BENEFICIOS */
 
 .benefits{
-    max-width:900px;
-    margin:0 auto;
-
     display:flex;
     flex-direction:column;
-    gap:24px;
+    gap:28px;
 }
 
 .benefit{
@@ -143,8 +170,6 @@ body{
 
     font-size:18px;
     font-weight:700;
-
-    margin-top:2px;
 }
 
 .text{
@@ -154,7 +179,7 @@ body{
     font-weight:400;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
 @media(max-width:768px){
 
@@ -165,27 +190,23 @@ body{
 
     .section-title{
         font-size:32px;
-        margin-bottom:95px;
-    }
-
-    .section-title::after{
-        width:70px;
+        margin-bottom:120px;
     }
 
     .card{
-        padding:90px 25px 35px;
+        padding:95px 25px 40px;
         border-radius:28px;
     }
 
     .glow{
-        width:220px;
-        height:220px;
-        top:-60px;
+        width:260px;
+        height:260px;
+        top:-70px;
     }
 
     .product-image{
-        width:170px;
-        top:-85px;
+        width:210px;
+        top:-105px;
     }
 
     .benefits{
@@ -230,51 +251,37 @@ body{
 
             <div class="benefit">
                 <div class="icon">✓</div>
-                <div class="text">
-                    Limpia suciedad, polvo y manchas sin dañar los materiales.
-                </div>
+                <div class="text">Limpia suciedad, polvo y manchas sin dañar los materiales.</div>
             </div>
 
             <div class="benefit">
                 <div class="icon">✓</div>
-                <div class="text">
-                    Fórmula premium de alto rendimiento para uso frecuente.
-                </div>
+                <div class="text">Fórmula premium de alto rendimiento para uso frecuente.</div>
             </div>
 
             <div class="benefit">
                 <div class="icon">✓</div>
-                <div class="text">
-                    Compatible con piel, lona, malla, sintéticos y más.
-                </div>
+                <div class="text">Compatible con piel, lona, malla, sintéticos y más.</div>
             </div>
 
             <div class="benefit">
                 <div class="icon">✓</div>
-                <div class="text">
-                    Cepillo premium incluido para una limpieza profunda.
-                </div>
+                <div class="text">Cepillo premium incluido para una limpieza profunda.</div>
             </div>
 
             <div class="benefit">
                 <div class="icon">✓</div>
-                <div class="text">
-                    Hasta 100 limpiezas por botella.
-                </div>
+                <div class="text">Hasta 100 limpiezas por botella.</div>
             </div>
 
             <div class="benefit">
                 <div class="icon">✓</div>
-                <div class="text">
-                    Mantén tus sneakers impecables y conserva su valor por más tiempo.
-                </div>
+                <div class="text">Mantén tus sneakers impecables y conserva su valor por más tiempo.</div>
             </div>
 
             <div class="benefit">
                 <div class="icon">✓</div>
-                <div class="text">
-                    Compra segura con Mercado Pago, PayPal y tarjetas.
-                </div>
+                <div class="text">Compra segura con Mercado Pago, PayPal y tarjetas.</div>
             </div>
 
         </div>
