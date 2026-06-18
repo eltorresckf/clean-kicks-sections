@@ -62,44 +62,33 @@ body{
 ========================= */
 
 .benefits{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    width:100%;
+    display:flex;
+    justify-content:space-between;
     align-items:center;
-    margin-top:10px;
+    width:100%;
+    margin-top:15px;
 }
 
 .benefit{
     display:flex;
     align-items:center;
-    gap:10px;
-}
-
-.benefit:nth-child(1){
-    justify-self:start;
-}
-
-.benefit:nth-child(2){
-    justify-self:center;
-}
-
-.benefit:nth-child(3){
-    justify-self:end;
+    gap:8px;
 }
 
 .icon{
-    width:20px;
-    height:20px;
+    width:18px;
+    height:18px;
     stroke:#fff;
-    stroke-width:1.8;
+    stroke-width:2;
     fill:none;
     flex-shrink:0;
 }
 
 .benefit span{
-    font-size:14px;
+    font-size:13px;
     color:#fff;
     white-space:nowrap;
+    font-weight:500;
 }
 
 /* =========================
@@ -130,17 +119,30 @@ body{
     }
 
     .benefits{
-        grid-template-columns:1fr;
-        gap:16px;
-        margin-top:10px;
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        gap:10px;
+        width:100%;
+        margin-top:12px;
     }
 
     .benefit{
-        justify-self:start !important;
+        flex-direction:column;
+        text-align:center;
+        gap:6px;
+        flex:1;
+    }
+
+    .icon{
+        width:18px;
+        height:18px;
     }
 
     .benefit span{
-        font-size:13px;
+        font-size:12px;
+        line-height:1.2;
+        white-space:normal;
     }
 
 }
@@ -158,11 +160,11 @@ body{
         </div>
 
         <div class="payment-card">
-            <img src="assets/mastercard.svg" alt="Mastercard">
+            <img src="assets/mastercard.png" alt="Mastercard">
         </div>
 
         <div class="payment-card">
-            <img src="assets/americanexpress.png" alt="American Express">
+            <img src="assets/amex.png" alt="American Express">
         </div>
 
         <div class="payment-card">
@@ -170,7 +172,7 @@ body{
         </div>
 
         <div class="payment-card">
-            <img src="assets/oxxo.png" alt="OXXO Pay">
+            <img src="assets/oxxopay.png" alt="OXXO Pay">
         </div>
 
         <div class="payment-card">
