@@ -32,19 +32,23 @@ body{
 
     width:100%;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    background:#2b2b2b;
-
-    color:#fff;
+    background:#111111;
 
     border-radius:14px;
 
     padding:16px 20px;
 
     margin-bottom:12px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#ffffff;
 
     transition:all .25s ease;
 
@@ -58,15 +62,18 @@ body{
 
 .payment-bar:hover{
 
-    background:#353535;
+    background:#1a1a1a;
 
 }
 
 .payment-text{
 
     font-size:16px;
+
     font-weight:500;
-    letter-spacing:.2px;
+
+    line-height:1;
+
     white-space:nowrap;
 
 }
@@ -74,18 +81,20 @@ body{
 .payment-logo{
 
     display:flex;
-    justify-content:flex-end;
+
     align-items:center;
-    flex-shrink:0;
 
 }
 
 .payment-logo img{
 
     display:block;
+
     height:24px;
+
     width:auto;
-    max-width:140px;
+
+    max-width:none;
 
 }
 
@@ -101,6 +110,10 @@ body{
 
         padding:14px 16px;
 
+        gap:8px;
+
+        border-radius:12px;
+
     }
 
     .payment-text{
@@ -112,7 +125,6 @@ body{
     .payment-logo img{
 
         height:20px;
-        max-width:110px;
 
     }
 
@@ -128,11 +140,11 @@ body{
     <div class="payment-bar">
 
         <div class="payment-text">
-            Pago seguro con
+            Pago seguro con MercadoPago
         </div>
 
         <div class="payment-logo">
-            <img src="assets/Mercado_Pago.svg.webp" alt="Mercado Pago">
+            <img src="assets/mercadopago.svg" alt="Mercado Pago">
         </div>
 
     </div>
@@ -140,11 +152,11 @@ body{
     <div class="payment-bar">
 
         <div class="payment-text">
-            Pago seguro con
+            Pago seguro con PayPal
         </div>
 
         <div class="payment-logo">
-            <img src="assets/PayPal_logo.svg.webp" alt="PayPal">
+            <img src="assets/paypal.svg" alt="PayPal">
         </div>
 
     </div>
