@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Incluye el kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0b0b;color:#fff;font-family:Inter,sans-serif}
+.section{max-width:1400px;margin:auto;padding:70px 0;overflow:hidden}
+.header{display:flex;justify-content:space-between;align-items:center;padding:0 40px 30px}
+h2{font-size:clamp(34px,5vw,62px);font-weight:800}
+.gold{color:#CD9341}
+.controls{display:flex;gap:12px}
+.btn{width:58px;height:58px;border-radius:50%;border:1px solid #fff;background:transparent;color:#fff;font-size:26px;cursor:pointer;transition:.25s}
+.btn:hover{background:#CD9341;color:#000;border-color:#CD9341}
+.viewport{overflow:hidden;padding-left:40px}
+.track{display:flex;gap:28px;transition:transform .45s cubic-bezier(.22,.61,.36,1);cursor:grab;user-select:none}
+.track.dragging{transition:none;cursor:grabbing}
+.card{flex:0 0 min(78vw,480px);transform:scale(.93);transition:transform .35s}
+.card.active{transform:scale(1)}
+.image{height:420px;background:#171717;border-radius:26px;display:flex;align-items:center;justify-content:center}
+.image img{max-width:82%;max-height:82%;pointer-events:none}
+h3{font-size:34px;margin:22px 0 10px}
+p{color:#bfbfbf;font-size:20px;line-height:1.5}
+@media(max-width:768px){
+.header{padding:0 20px 20px}
+.viewport{padding-left:20px}
+.image{height:300px}
+h3{font-size:28px}
+p{font-size:17px}
+.btn{width:48px;height:48px}
+}
+</style>
+</head>
+<body>
+<section class="section">
+<div class="header">
+<h2>¿Qué incluye <span class="gold">el kit?</span></h2>
+<div class="controls">
+<button class="btn" id="prev">&#8592;</button>
+<button class="btn" id="next">&#8594;</button>
+</div>
+</div>
+
+<div class="viewport">
+<div class="track" id="track">
+<div class="card active">
+<div class="image"><img src="limpiador.png" alt=""></div>
+<h3>Limpiador Premium</h3>
+<p>Limpia profundamente sin dañar los materiales.</p>
+</div>
+
+<div class="card">
+<div class="image"><img src="cepillo.png" alt=""></div>
+<h3>Cepillo Premium</h3>
+<p>Cerdas de dureza media ideales para la mayoría de materiales.</p>
+</div>
+
+<div class="card">
+<div class="image"><img src="toalla.png" alt=""></div>
+<h3>Toalla de Microfibra</h3>
+<p>Elimina la suciedad y deja un acabado impecable.</p>
+</div>
+</div>
+</div>
+</section>
+
+<script>
+const track=document.getElementById("track");
+const cards=[...document.querySelectorAll(".card")];
+let index=0,startX=0,currentX=0,dragging=false,base=0;
+
+function cardWidth(){return cards[0].offsetWidth+28;}
+function render(){
+track.style.transform=`translateX(${-index*cardWidth()}px)`;
+cards.forEach((c,i)=>c.classList.toggle("active",i===index));
+document.getElementById("prev").disabled=index===0;
+document.getElementById("next").disabled=index===cards.length-1;
+sendHeight();
+}
+document.getElementById("next").onclick=()=>{if(index<cards.length-1){index++;render();}};
+document.getElementById("prev").onclick=()=>{if(index>0){index--;render();}};
+
+function begin(x){dragging=true;track.classList.add("dragging");startX=x;base=-index*cardWidth();}
+function move(x){
+ if(!dragging)return;
+ currentX=x;
+ track.style.transform=`translateX(${base+(currentX-startX)}px)`;
+}
+function end(){
+ if(!dragging)return;
+ dragging=false;
+ track.classList.remove("dragging");
+ let diff=currentX-startX;
+ if(diff<-70&&index<cards.length-1)index++;
+ if(diff>70&&index>0)index--;
+ render();
+}
+track.addEventListener("mousedown",e=>begin(e.clientX));
+window.addEventListener("mousemove",e=>move(e.clientX));
+window.addEventListener("mouseup",end);
+track.addEventListener("touchstart",e=>begin(e.touches[0].clientX),{passive:true});
+track.addEventListener("touchmove",e=>move(e.touches[0].clientX),{passive:true});
+track.addEventListener("touchend",end);
+
+function sendHeight(){
+ parent.postMessage({type:"setHeight",height:document.documentElement.scrollHeight},"*");
+}
+window.addEventListener("load",()=>{render();setTimeout(sendHeight,300);});
+window.addEventListener("resize",render);
+new ResizeObserver(sendHeight).observe(document.body);
+</script>
+</body>
+</html>
